@@ -1,0 +1,30 @@
+#! /usr/bin/env node
+
+const package = require('../package.json');
+const program = require('commander');
+const Manga = ['1kkk','dm5','dmzj','ikanman'].reduce((requires,name,index) => {
+    requires[name] = require(`../dist/crawler/${name}/manga`)['default'];
+    return requires;
+},{});
+
+program
+    .version(package.version)
+    .command('download <id>')
+    .description('download by <website/id>')
+    .option('-d, --dist [dist]','manga download directory')
+    .action((name,cmd)=>{
+        let [website,id] = name.split('/');
+        if (!id){
+            throw new Error('params must be format like website/id');
+        }
+        let manga = new Manga[website](id,cmd.dist);
+        manga.download();
+    });
+
+program.parse(process.argv);
+
+const COMMANDS = ['download'];
+if (
+    program.args.length === 0 ||
+    !(COMMANDS.indexOf(program.args[0]) >= 0)
+) program.help();
