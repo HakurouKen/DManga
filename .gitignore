@@ -39,3 +39,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+# Default manga download directory
+/manga
+
+# Built files
+/dist
