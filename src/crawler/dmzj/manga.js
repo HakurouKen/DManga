@@ -1,14 +1,9 @@
 import * as path from 'path';
-import * as _request from 'request';
 import Promise from 'Bluebird';
-
-const request = Promise.promisifyAll(_request);
 
 import Manga from 'lib/crawler/manga';
 import Chapter from './chapter';
-import PromiseQueue from 'lib/promise-queue';
 import { indexPad } from 'lib/utils';
-import { IndexError,ChapterError } from 'lib/crawler/exception';
 
 class DmzjManga extends Manga {
     constructor(id,dest) {
