@@ -1,8 +1,9 @@
-#! /usr/bin/env node
+#! /usr/bin/env node --harmony
 
 const package = require('../package.json');
 const program = require('commander');
-const Manga = ['1kkk','dm5','dmzj','ikanman'].reduce((requires,name,index) => {
+const SUPPORT_WEBSITE = ['1kkk','dm5','dmzj','ikanman'];
+const Manga = SUPPORT_WEBSITE.reduce((requires,name,index) => {
     requires[name] = require(`../dist/crawler/${name}/manga`)['default'];
     return requires;
 },{});
@@ -14,8 +15,10 @@ program
     .option('-d, --dist [dist]','manga download directory')
     .action((name,cmd)=>{
         let [website,id] = name.split('/');
-        if (!id){
-            throw new Error('params must be format like website/id');
+        if (!id) {
+            throw new Error('Params must be format like website/id');
+        } else if (SUPPORT_WEBSITE.indexOf(website) < 0) {
+            throw new Error(`Params website not support. Must chosen from ${SUPPORT_WEBSITE} .`);
         }
         let manga = new Manga[website](id,cmd.dist);
         manga.download();
@@ -24,7 +27,10 @@ program
 program.parse(process.argv);
 
 const COMMANDS = ['download'];
+console.log(program)
+// subcommand is the third arguments of raw argv.
+// 1. node 2. bin/app 3. sub-command
 if (
-    program.args.length === 0 ||
-    !(COMMANDS.indexOf(program.args[0]) >= 0)
+    program.rawArgs.length < 3 ||
+    COMMANDS.indexOf(program.rawArgs[2]) < 0
 ) program.help();
