@@ -27,7 +27,6 @@ program
 program.parse(process.argv);
 
 const COMMANDS = ['download'];
-console.log(program)
 // subcommand is the third arguments of raw argv.
 // 1. node 2. bin/app 3. sub-command
 if (
