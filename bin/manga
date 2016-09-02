@@ -1,0 +1,10 @@
+#! /usr/bin/env node --harmony
+
+const package = require('../package.json');
+const program = require('commander');
+
+program
+    .version(package.version)
+    .command('download <id>','download by <website/id>')
+
+program.parse(process.argv);

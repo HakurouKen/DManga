@@ -22,7 +22,7 @@
     "url": "git://github.com/Hakurouken/manga-downloader.git"
   },
   "bin": {
-      "app": "bin/app"
+      "app": "bin/manga"
   },
   "scripts": {
     "build": "babel src -d dist/ --copy-files",
