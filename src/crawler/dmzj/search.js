@@ -9,7 +9,7 @@ const search = searchFuncGenerator(URL,function(body){
             id: info.comic_py,
             name: info.name,
             end: !!info.status,
-            description: info.description.replace('\n',''),
+            description: info.description.replace('\s+',' '),
             author: info.authors,
             cover: info.cover
         };

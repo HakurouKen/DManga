@@ -15,7 +15,7 @@ const search = searchFuncGenerator(URL,function(body){
         return {
             id: +($cover.attr('href').match(/\/(\d+)\//) || [])[1] || null,
             name: $detail.find('dt a').text().trim(),
-            description: ($desc.contents().eq(1).text() || '').replace(/\[$/,''),
+            description: ($desc.contents().eq(1).text() || '').replace(/\[$/,'').replace('\s+',' '),
             end: ($tags.filter('.status').find('span').eq(1).text() || '').indexOf('完结') >= 0,
             author: $tags.eq(2).find('a').text(),
             cover: $cover.find('img').attr('src')

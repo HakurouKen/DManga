@@ -18,8 +18,8 @@ const search = searchFuncGenerator(URL,function(body){
         return {
             id: id,
             name: $link.text().trim(),
-            description: $tk.find('.tk_04').text().trim().replace(DESC_START,'').replace('\r\n',''),
-            author: $cell.eq(1).text().trim(),
+            description: $tk.find('.tk_04').text().trim().replace(DESC_START,'').replace('\s+',' '),
+            author: $cell.eq(1).text().trim().replace(/\s+/,' '),
             cover: $elem.find('img.a_comicname').attr('src')
         }
     });
