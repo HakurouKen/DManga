@@ -40,7 +40,7 @@ export function cacheWrapper(func,context = this){
     }
 }
 
-export function searchFuncGenerator(url_format,resolver){
+export function searchFuncGenerator(url_format,resolver,timeout=5000){
     if (typeof url_format !== 'string') {
         throw Error('Param url_format must be a string.');
     } else if (url_format.indexOf('{{keyword}}') < 0) {
@@ -48,7 +48,10 @@ export function searchFuncGenerator(url_format,resolver){
     }
     let func = function(keyword=''){
         let url = url_format.replace('{{keyword}}',encodeURIComponent(keyword));
-        return request.getAsync(url).then(resp => {
+        return request.getAsync({
+            url: url,
+            timeout: timeout
+        }).then(resp => {
             if (resp.statusCode !== 200) {
                 return Promise.reject(resp);
             }
