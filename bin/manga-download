@@ -10,6 +10,7 @@ const Manga = support.WEBSITES.reduce((requires,name,index) => {
 
 program
     .option('-d, --dist [dist]','manga download directory')
+    .option('-c --chapter [chapter]','download specific chapter')
     .action((name,cmd)=>{
         let [website,id] = name.split('/');
         if (!id) {
@@ -18,6 +19,6 @@ program
             throw new Error(`Params website not support. Must chosen from ${SUPPORT_WEBSITE} .`);
         }
         let manga = new Manga[website](id,cmd.dist);
-        manga.download();
+        manga.download(cmd.chapter);
     })
     .parse(process.argv);
