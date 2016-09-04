@@ -1,0 +1,21 @@
+{
+    "PICTURE_DOWNLOADING": "正在下载 {0} ...",
+    "ERRORS": {
+        "NOT_IMPLEMENTED_ERROR": "{0} 未被继承.",
+        "SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_ERROR": "参数 url_format 必须是一个字符串.",
+        "SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_KEYWORD_ERROR": "参数 url_format 必须含有一个 {{keyword}} 占位符.",
+        "INDEX_ERROR": "目录未找到.",
+        "INDEX_ERROR_WITH_ID": "目录 {0} 未找到.",
+        "CHAPTER_ERROR": "章节未找到.",
+        "CHAPTER_ERROR_WITH_ID": "章节 {0} 未找到.",
+        "DOWNLOAD_FAIL": "下载失败: {0}"
+    },
+    "SEARCH_TABLE_HEADER": [
+        "ID",
+        "名称",
+        "作者",
+        "封面",
+        "是否完结",
+        "简介"
+    ]
+}

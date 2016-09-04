@@ -4,6 +4,7 @@ import fs from 'fs';
 import request from 'request';
 import Promise from 'Bluebird';
 import assert from 'assert';
+import { i18n } from 'lib/i18n';
 
 import { capitalize } from 'lib/utils'
 
@@ -25,7 +26,7 @@ class Picture {
         let self = this;
         let pathDisplayed = filepath.split('/').slice(-3).join('/');
         return new Promise((resolve,reject)=>{
-            console.log(`Downloading ${pathDisplayed}...`);
+            console.log(i18n.MESSAGE.PICTURE_DOWNLOADING.format(pathDisplayed));
             request({
                 headers: this.headers,
                 timeout: Picture.TIMEOUT,

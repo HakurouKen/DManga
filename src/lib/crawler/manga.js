@@ -89,10 +89,8 @@ class Manga {
                 });
             }
         }).catch(err => {
-            if (err instanceof IndexError) {
-                console.error(`Index not found.`);
-            } else if (err instanceof ChapterError) {
-                console.error(`Chapter not found.`);
+            if (err instanceof IndexError || err instanceof ChapterError) {
+                console.error(err.message);
             } else {
                 console.error(err);
             }

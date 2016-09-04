@@ -1,0 +1,21 @@
+{
+    "PICTURE_DOWNLOADING": "Downloading {0} ...",
+    "ERRORS": {
+        "NOT_IMPLEMENTED_ERROR": "{0} is not implemented.",
+        "SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_ERROR": "Param url_format must be a string.",
+        "SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_KEYWORD_ERROR": "Param url_format must have a {{keyword}} placehoder.",
+        "INDEX_ERROR": "Index not found.",
+        "INDEX_ERROR_WITH_ID": "Index {0} not found.",
+        "CHAPTER_ERROR": "Chapter not found.",
+        "CHAPTER_ERROR_WITH_ID": "Chapter {0} not found.",
+        "DOWNLOAD_FAIL": "Download fail: {0}"
+    },
+    "SEARCH_TABLE_HEADER": [
+        "id",
+        "name",
+        "author",
+        "cover",
+        "end",
+        "description"
+    ]
+}

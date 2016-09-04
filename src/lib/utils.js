@@ -1,3 +1,4 @@
+import { i18n } from 'lib/i18n';
 
 export function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -12,7 +13,7 @@ export function indexPad(str){
 
 export class NotImplementedError extends Error {
     constructor(name,fileName,lineNumber){
-        let message = name ? `${name} is not implemented.` : '';
+        let message = name ? i18n.MESSAGE.NOT_IMPLEMENTED_ERROR.format(name) : '';
         super(message,fileName,lineNumber);
     }
 }

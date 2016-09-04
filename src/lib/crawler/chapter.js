@@ -7,6 +7,7 @@ import * as _mkdirp from 'mkdirp';
 const request = Promise.promisifyAll(_request);
 const mkdirp = Promise.promisify(_mkdirp.mkdirp);
 
+import { i18n } from 'lib/i18n';
 import Picture from './picture';
 import { indexPad,NotImplementedError } from 'lib/utils';
 import PromiseQueue from 'lib/promise-queue';
@@ -46,7 +47,7 @@ class Chapter {
                 let picture = new Picture(url,chapterUrl);
                 queue.push(()=>{
                     return picture.download(filepath).catch(e => {
-                        console.error(`Download fail: ${filepath}`);
+                        console.error(i18n.MESSAGE.ERRORS.DOWNLOAD_FAIL.format(filepath));
                     });
                 });
             }
@@ -72,7 +73,7 @@ class Chapter {
                 let picture = new Picture(url,chapterUrl);
                 queue.push(()=>{
                     return picture.download(filepath).catch(e => {
-                        console.error(`Download fail: ${filepath}`);
+                        console.error(i18n.MESSAGE.ERRORS.DOWNLOAD_FAIL.format(filepath));
                     });
                 });
             }

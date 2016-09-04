@@ -1,5 +1,6 @@
 import Promise from 'Bluebird';
 import * as _request from 'request';
+import { i18n } from 'lib/i18n';
 
 const request = Promise.promisifyAll(_request);
 
@@ -42,9 +43,9 @@ export function cacheWrapper(func,context = this){
 
 export function searchFuncGenerator(url_format,resolver,timeout=5000){
     if (typeof url_format !== 'string') {
-        throw Error('Param url_format must be a string.');
+        throw Error(i18n.MESSAGE.SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_ERROR.toString());
     } else if (url_format.indexOf('{{keyword}}') < 0) {
-        throw Error('Param url_format must have a {{keyword}} placeholder.');
+        throw Error(i18n.MESSAGE.SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_KEYWORD_ERROR.toString());
     }
     let func = function(keyword=''){
         let url = url_format.replace('{{keyword}}',encodeURIComponent(keyword));
