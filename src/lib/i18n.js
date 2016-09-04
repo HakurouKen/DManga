@@ -55,8 +55,8 @@ class I18n {
         } catch(e) {
             if (e.code === 'MODULE_NOT_FOUND') {
                 if (this.locale !== 'zh-CN') {
-                    console.warning(`Locale not support, fallback to default 'zh-CN'`);
-                    return this.use(this.locale);
+                    console.warn(`Locale not support, fallback to default 'zh-CN'`);
+                    return this.use('zh-CN');
                 } else {
                     throw new Error('Locale not found.');
                 }
