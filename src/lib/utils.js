@@ -13,7 +13,7 @@ export function indexPad(str){
 
 export class NotImplementedError extends Error {
     constructor(name,fileName,lineNumber){
-        let message = name ? i18n.MESSAGE.NOT_IMPLEMENTED_ERROR.format(name) : '';
+        let message = name ? i18n.MESSAGE.ERRORS.NOT_IMPLEMENTED_ERROR.format(name) : '';
         super(message,fileName,lineNumber);
     }
 }

@@ -43,9 +43,9 @@ export function cacheWrapper(func,context = this){
 
 export function searchFuncGenerator(url_format,resolver,timeout=5000){
     if (typeof url_format !== 'string') {
-        throw Error(i18n.MESSAGE.SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_ERROR.toString());
+        throw Error(i18n.MESSAGE.ERRORS.SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_ERROR.toString());
     } else if (url_format.indexOf('{{keyword}}') < 0) {
-        throw Error(i18n.MESSAGE.SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_KEYWORD_ERROR.toString());
+        throw Error(i18n.MESSAGE.ERRORS.SEARCH_FUNC_GENERATOR_PARAMS_URL_FORMAT_KEYWORD_ERROR.toString());
     }
     let func = function(keyword=''){
         let url = url_format.replace('{{keyword}}',encodeURIComponent(keyword));
