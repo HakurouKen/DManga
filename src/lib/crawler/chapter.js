@@ -58,33 +58,6 @@ class Chapter {
             });
         });
     }
-
-    downloadIkanman(folder, thread = 5) {
-        let queue = new PromiseQueue(thread);
-        let queued = 0;
-        let chapterUrl = this.url;
-        return Promise.all([
-            this.list(),
-            mkdirp(folder)
-        ]).spread(urls => {
-            for ( let url of urls ){
-                let extname = path.extname(url);
-                let filepath = path.join(folder,indexPad(++queued) + extname);
-                let picture = new Picture(url,chapterUrl);
-                queue.push(()=>{
-                    return picture.download(filepath).catch(e => {
-                        console.error(i18n.MESSAGE.ERRORS.DOWNLOAD_FAIL.format(filepath));
-                    });
-                });
-            }
-            return new Promise((resolve,reject)=>{
-                queue.onClear(()=>{
-                    resolve(urls);
-                });
-            });
-        });
-    }
-
 }
 
 export default Chapter;
