@@ -2,10 +2,113 @@
 
 const package = require('../package.json');
 const program = require('commander');
+const config = require('./manga.config');
+const i18n = require('lib/i18n').i18n;
+
+const support = require('./support.json');
+const Manga = support.WEBSITES.reduce((requires,name,index) => {
+    requires[name] = require(`../dist/crawler/${name}/manga`)['default'];
+    return requires;
+},{});
+
+const Table = require('cli-table2');
+const Searcher = support.WEBSITES.reduce((requires,name,index) => {
+    requires[name] = require(`../dist/crawler/${name}/search`).search;
+    return requires;
+},{});
+
+if (config.language) {
+    i18n.use(config.language);
+}
 
 program
     .version(package.version)
-    .command('download <id>', 'download by <website/id>')
-    .command('search <keyword>', 'search manga by keyword',{isDefault: true})
+
+/**
+ * Subcommand: download
+ */
+program
+    .command('download <id>')
+    .description('download by <website/id>')
+    .option('-d, --dist <dist>','manga download directory')
+    .option('-c --chapter <chapter>','download specific chapter')
+    .action((name,cmd)=>{
+        let [website,id] = name.split('/');
+        if (!id) {
+            throw new Error('Params must be format like website/id');
+        } else if (support.WEBSITES.indexOf(website) < 0) {
+            throw new Error(`Params website not support. Must chosen from ${SUPPORT_WEBSITE} .`);
+        }
+        let manga = new Manga[website](id,cmd.dist);
+        manga.download(cmd.chapter);
+    });
+
+/**
+ * Subcommand: search
+ */
+program
+    .command('search <keyword>')
+    .description('search manga by keyword')
+    .action((name,cmd) => {
+        let keys = Object.keys(Searcher);
+        Promise.all(
+            keys.map(website => {
+                return Searcher[website](name);
+            })
+        ).then(results => {
+            let mangas = [];
+            let len = results.reduce((arr1,arr2) =>
+                arr1.length > arr2.length ? arr1 : arr2
+            ).length;
+            for (let i = 0; i < len; i++) {
+                for (let j = 0; j < results.length; j++) {
+                    let manga = results[j][i];
+                    if (manga) {
+                        manga.id = manga.id ? (keys[j] + '/' + manga.id) : null;
+                        mangas.push(manga);
+                    }
+                }
+            }
+            return mangas;
+        }).then(outputMangaAsTable)
+        .catch(err => {
+            console.error(err);
+        });
+    });
+
+function chunkString(str, length=1) {
+    return (str || '').match(new RegExp('.{1,' + length + '}', 'g')) || [];
+}
+
+function cellLimit(str, limit = 30) {
+    return chunkString(str, limit).join('\n');
+}
+
+function outputMangaAsTable(mangas){
+    let table = new Table({
+        head: i18n.MESSAGE.SEARCH_TABLE_HEADER.map(
+            msg => msg.toString()
+        )
+    });
+    mangas.forEach(manga => {
+        let row = [];
+        ['id','name','author','cover','end','description'].forEach(key=>{
+            let text = manga[key];
+            if (key === 'name') {
+                text = cellLimit(text,20);
+            } else if (key === 'end') {
+                text = text === undefined ? '-' :
+                    text ? '\u2714' : '\u2718';
+            } else if (key === 'description') {
+                text = cellLimit(text);
+            }
+            row.push(text);
+        });
+
+        table.push(row);
+    });
+    console.log(table.toString());
+}
+
 
 program.parse(process.argv);
