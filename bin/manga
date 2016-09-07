@@ -7,13 +7,13 @@ const i18n = require('lib/i18n').i18n;
 
 const support = require('./support.json');
 const Manga = support.WEBSITES.reduce((requires,name,index) => {
-    requires[name] = require(`../dist/crawler/${name}/manga`)['default'];
+    requires[name] = require(`crawler/${name}/manga`)['default'];
     return requires;
 },{});
 
 const Table = require('cli-table2');
 const Searcher = support.WEBSITES.reduce((requires,name,index) => {
-    requires[name] = require(`../dist/crawler/${name}/search`).search;
+    requires[name] = require(`crawler/${name}/search`).search;
     return requires;
 },{});
 
