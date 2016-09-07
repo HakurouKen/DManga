@@ -17,5 +17,13 @@
         "封面",
         "是否完结",
         "简介"
-    ]
+    ],
+    "COMMANDS": {
+        "DOWNLOAD_DESC": "通过 <website/id> 下载",
+        "DOWNLOAD_DIR": "漫画下载路径",
+        "DOWNLOAD_CHAPTER": "下载指定章节",
+        "PARAMS_ID_FORMAT_ERROR": "参数必须满足 website/id 格式.",
+        "SITE_NOT_SUPPORT": "暂不支持选择的网站. 必须从 {0} 中选择.",
+        "SEARCH_DESC": "通过关键词搜索漫画"
+    }
 }

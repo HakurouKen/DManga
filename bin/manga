@@ -23,21 +23,20 @@ if (config.language) {
 
 program
     .version(package.version)
-
 /**
  * Subcommand: download
  */
 program
     .command('download <id>')
-    .description('download by <website/id>')
-    .option('-d, --dist <dist>','manga download directory')
-    .option('-c --chapter <chapter>','download specific chapter')
+    .description(i18n.MESSAGE.COMMANDS.DOWNLOAD_DESC.toString())
+    .option('-d, --dist <dist>',i18n.MESSAGE.COMMANDS.DOWNLOAD_DIR.toString())
+    .option('-c --chapter <chapter>',i18n.MESSAGE.COMMANDS.DOWNLOAD_CHAPTER.toString())
     .action((name,cmd)=>{
         let [website,id] = name.split('/');
         if (!id) {
-            throw new Error('Params must be format like website/id');
+            throw new Error(i18n.MESSAGE.COMMANDS.PARAMS_ID_FORMAT_ERROR.toString());
         } else if (support.WEBSITES.indexOf(website) < 0) {
-            throw new Error(`Params website not support. Must chosen from ${SUPPORT_WEBSITE} .`);
+            throw new Error(i18n.MESSAGE.COMMANDS.SITE_NOT_SUPPORT.format(support.WEBSITES));
         }
         let manga = new Manga[website](id,cmd.dist);
         manga.download(cmd.chapter);
@@ -48,7 +47,7 @@ program
  */
 program
     .command('search <keyword>')
-    .description('search manga by keyword')
+    .description(i18n.MESSAGE.COMMANDS.SEARCH_DESC.toString())
     .action((name,cmd) => {
         let keys = Object.keys(Searcher);
         Promise.all(
