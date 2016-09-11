@@ -25,6 +25,7 @@
         "PARAMS_ID_FORMAT_ERROR": "Params must be format like website/id.",
         "SITE_NOT_SUPPORT": "Params website not support. Must chosen from {0} .",
         "SEARCH_DESC": "search manga by keyword",
-        "NO_SEARCH_RESULT": "No result found."
+        "NO_SEARCH_RESULT": "No result found.",
+        "LISTS": "Available table of contents, default 0 (the first one)."
     }
 }

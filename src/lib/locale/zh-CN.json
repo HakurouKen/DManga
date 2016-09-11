@@ -25,6 +25,7 @@
         "PARAMS_ID_FORMAT_ERROR": "参数必须满足 website/id 格式.",
         "SITE_NOT_SUPPORT": "暂不支持选择的网站. 必须从 {0} 中选择.",
         "SEARCH_DESC": "通过关键词搜索漫画",
-        "NO_SEARCH_RESULT": "没有搜索结果。"
+        "NO_SEARCH_RESULT": "没有搜索结果。",
+        "LISTS": "可选的目录列表，默认为 0（第一个）"
     }
 }

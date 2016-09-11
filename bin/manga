@@ -31,6 +31,7 @@ program
     .description(i18n.MESSAGE.COMMANDS.DOWNLOAD_DESC.toString())
     .option('-d, --dist <dist>',i18n.MESSAGE.COMMANDS.DOWNLOAD_DIR.toString())
     .option('-c --chapter <chapter>',i18n.MESSAGE.COMMANDS.DOWNLOAD_CHAPTER.toString(),parseInt)
+    .option('-l --list <list>', i18n.MESSAGE.COMMANDS.LISTS.toString(),parseInt)
     .action((name,cmd)=>{
         let [website,id] = name.split('/');
         if (!id) {
@@ -39,7 +40,7 @@ program
             throw new Error(i18n.MESSAGE.COMMANDS.SITE_NOT_SUPPORT.format(support.WEBSITES));
         }
         let manga = new Manga[website](id,cmd.dist);
-        manga.download(cmd.chapter);
+        manga.download(cmd.chapter,cmd.list || 0);
     });
 
 /**
