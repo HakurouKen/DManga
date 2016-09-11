@@ -84,6 +84,10 @@ function cellLimit(str, limit = 30) {
 }
 
 function outputMangaAsTable(mangas){
+    if (!mangas || !mangas.length) {
+        console.log(i18n.MESSAGE.COMMANDS.NO_SEARCH_RESULT.toString());
+        return;
+    }
     let table = new Table({
         head: i18n.MESSAGE.SEARCH_TABLE_HEADER.map(
             msg => msg.toString()
