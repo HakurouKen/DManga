@@ -30,7 +30,7 @@ program
     .command('download <id>')
     .description(i18n.MESSAGE.COMMANDS.DOWNLOAD_DESC.toString())
     .option('-d, --dist <dist>',i18n.MESSAGE.COMMANDS.DOWNLOAD_DIR.toString())
-    .option('-c --chapter <chapter>',i18n.MESSAGE.COMMANDS.DOWNLOAD_CHAPTER.toString())
+    .option('-c --chapter <chapter>',i18n.MESSAGE.COMMANDS.DOWNLOAD_CHAPTER.toString(),parseInt)
     .action((name,cmd)=>{
         let [website,id] = name.split('/');
         if (!id) {
