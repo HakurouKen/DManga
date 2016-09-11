@@ -52,7 +52,7 @@ program
         let keys = Object.keys(Searcher);
         Promise.all(
             keys.map(website => {
-                return Searcher[website](name);
+                return Searcher[website](name).catch(err => Promise.resolve([]));
             })
         ).then(results => {
             let mangas = [];
