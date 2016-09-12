@@ -43,7 +43,7 @@ manga download ikanman/1014 --dist /Users/username/manga/
 manga info ikanman/1014
 ```
 
-### list the indexes
+### List the indexes
 ```bash
 ## manga list <website/id>
 manga list ikanman/1014
