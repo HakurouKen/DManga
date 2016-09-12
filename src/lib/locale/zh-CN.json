@@ -28,6 +28,7 @@
         "SEARCH_DESC": "通过关键词搜索漫画",
         "NO_SEARCH_RESULT": "没有搜索结果。",
         "INFO_DESC": "漫画详情",
-        "LISTS_DESC": "显示目录的列表"
+        "LISTS_DESC": "显示目录的列表",
+        "INDEXES_NO_CONTENT": "没有内容。"
     }
 }

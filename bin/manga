@@ -18,6 +18,8 @@ const Searcher = support.WEBSITES.reduce((requires,name,index) => {
     return requires;
 },{});
 
+const MSG_CMD = i18n.MESSAGE.COMMANDS;
+
 if (config.language) {
     i18n.use(config.language);
 }
@@ -28,9 +30,9 @@ program
 function idAdaptor(name){
     let [website,id] = name.split('/');
     if (!id) {
-        throw new Error(i18n.MESSAGE.COMMANDS.PARAMS_ID_FORMAT_ERROR.toString());
+        throw new Error(MSG_CMD.PARAMS_ID_FORMAT_ERROR.toString());
     } else if (support.WEBSITES.indexOf(website) < 0) {
-        throw new Error(i18n.MESSAGE.COMMANDS.SITE_NOT_SUPPORT.format(support.WEBSITES));
+        throw new Error(MSG_CMD.SITE_NOT_SUPPORT.format(support.WEBSITES));
     }
     return [website,id];
 }
@@ -40,10 +42,10 @@ function idAdaptor(name){
  */
 program
     .command('download <id>')
-    .description(i18n.MESSAGE.COMMANDS.DOWNLOAD_DESC.toString())
-    .option('-d, --dist <dist>',i18n.MESSAGE.COMMANDS.DOWNLOAD_DIR.toString())
-    .option('-c --chapter <chapter>',i18n.MESSAGE.COMMANDS.DOWNLOAD_CHAPTER.toString(),parseInt)
-    .option('-x --index <index>', i18n.MESSAGE.COMMANDS.INDEX.toString(),parseInt)
+    .description(MSG_CMD.DOWNLOAD_DESC.toString())
+    .option('-d, --dist <dist>',MSG_CMD.DOWNLOAD_DIR.toString())
+    .option('-c --chapter <chapter>',MSG_CMD.DOWNLOAD_CHAPTER.toString(),parseInt)
+    .option('-x --index <index>', MSG_CMD.INDEX.toString(),parseInt)
     .action((name,cmd)=>{
         let [website,id] = idAdaptor(name);
         let manga = new Manga[website](id,cmd.dist);
@@ -55,7 +57,7 @@ program
  */
 program
     .command('info <id>')
-    .description(i18n.MESSAGE.COMMANDS.INFO_DESC.toString())
+    .description(MSG_CMD.INFO_DESC.toString())
     .action((name,cmd) => {
         let [website,id] = idAdaptor(name);
         let manga = new Manga[website](id);
@@ -67,12 +69,23 @@ program
  */
 program
     .command('list <id>')
-    .description(i18n.MESSAGE.COMMANDS.LISTS_DESC.toString())
+    .description(MSG_CMD.LISTS_DESC.toString())
     .action((name,cmd) => {
         let [website,id] = idAdaptor(name);
         let manga = new Manga[website](id);
         manga.indexes().then(indexes => {
-            console.log(util.inspect(indexes,{ showHidden: true, depth: null }));
+            if (!indexes.length) {
+                console.log(MSG_CMD.INDEXES_NO_CONTENT.toString());
+                return;
+            }
+            for (let index of indexes) {
+                console.log(index.name);
+                let table = new Table();
+                (index.content || []).forEach(chapter => {
+                    table.push([chapter.name,chapter.href]);
+                });
+                console.log(table.toString());
+            }
         });
     });
 
@@ -81,7 +94,7 @@ program
  */
 program
     .command('search <keyword>')
-    .description(i18n.MESSAGE.COMMANDS.SEARCH_DESC.toString())
+    .description(MSG_CMD.SEARCH_DESC.toString())
     .action((name,cmd) => {
         let keys = Object.keys(Searcher);
         Promise.all(
@@ -119,7 +132,7 @@ function cellLimit(str, limit = 30) {
 
 function outputMangaAsTable(mangas){
     if (!mangas || !mangas.length) {
-        console.log(i18n.MESSAGE.COMMANDS.NO_SEARCH_RESULT.toString());
+        console.log(MSG_CMD.NO_SEARCH_RESULT.toString());
         return;
     }
     let table = new Table({

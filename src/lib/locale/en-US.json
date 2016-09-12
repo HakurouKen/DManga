@@ -28,6 +28,7 @@
         "SEARCH_DESC": "search manga by keyword",
         "NO_SEARCH_RESULT": "No result found.",
         "INFO_DESC": "Show the info detail.",
-        "LISTS_DESC": "Show the list of table of contents."
+        "LISTS_DESC": "Show the list of table of contents.",
+        "INDEXES_NO_CONTENT": "No content."
     }
 }
