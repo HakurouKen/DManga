@@ -4,6 +4,7 @@ const package = require('../package.json');
 const program = require('commander');
 const config = require('./manga.config');
 const i18n = require('lib/i18n').i18n;
+const util = require('util');
 
 const support = require('./support.json');
 const Manga = support.WEBSITES.reduce((requires,name,index) => {
@@ -23,6 +24,17 @@ if (config.language) {
 
 program
     .version(package.version)
+
+function idAdaptor(name){
+    let [website,id] = name.split('/');
+    if (!id) {
+        throw new Error(i18n.MESSAGE.COMMANDS.PARAMS_ID_FORMAT_ERROR.toString());
+    } else if (support.WEBSITES.indexOf(website) < 0) {
+        throw new Error(i18n.MESSAGE.COMMANDS.SITE_NOT_SUPPORT.format(support.WEBSITES));
+    }
+    return [website,id];
+}
+
 /**
  * Subcommand: download
  */
@@ -31,16 +43,37 @@ program
     .description(i18n.MESSAGE.COMMANDS.DOWNLOAD_DESC.toString())
     .option('-d, --dist <dist>',i18n.MESSAGE.COMMANDS.DOWNLOAD_DIR.toString())
     .option('-c --chapter <chapter>',i18n.MESSAGE.COMMANDS.DOWNLOAD_CHAPTER.toString(),parseInt)
-    .option('-l --list <list>', i18n.MESSAGE.COMMANDS.LISTS.toString(),parseInt)
+    .option('-x --index <index>', i18n.MESSAGE.COMMANDS.INDEX.toString(),parseInt)
     .action((name,cmd)=>{
-        let [website,id] = name.split('/');
-        if (!id) {
-            throw new Error(i18n.MESSAGE.COMMANDS.PARAMS_ID_FORMAT_ERROR.toString());
-        } else if (support.WEBSITES.indexOf(website) < 0) {
-            throw new Error(i18n.MESSAGE.COMMANDS.SITE_NOT_SUPPORT.format(support.WEBSITES));
-        }
+        let [website,id] = idAdaptor(name);
         let manga = new Manga[website](id,cmd.dist);
-        manga.download(cmd.chapter,cmd.list || 0);
+        manga.download(cmd.chapter,cmd.index || 0);
+    });
+
+/**
+ *  Subcommand: info
+ */
+program
+    .command('info <id>')
+    .description(i18n.MESSAGE.COMMANDS.INFO_DESC.toString())
+    .action((name,cmd) => {
+        let [website,id] = idAdaptor(name);
+        let manga = new Manga[website](id);
+        manga.info().then(console.log);
+    });
+
+/**
+ *  Subcommand: list
+ */
+program
+    .command('list <id>')
+    .description(i18n.MESSAGE.COMMANDS.LISTS_DESC.toString())
+    .action((name,cmd) => {
+        let [website,id] = idAdaptor(name);
+        let manga = new Manga[website](id);
+        manga.indexes().then(indexes => {
+            console.log(util.inspect(indexes,{ showHidden: true, depth: null }));
+        });
     });
 
 /**

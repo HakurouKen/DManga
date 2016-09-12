@@ -22,10 +22,12 @@
         "DOWNLOAD_DESC": "download by <website/id>",
         "DOWNLOAD_DIR": "manga download path",
         "DOWNLOAD_CHAPTER": "download specific chapter",
+        "INDEX": "Available table of contents, default 0 (the first one).",
         "PARAMS_ID_FORMAT_ERROR": "Params must be format like website/id.",
         "SITE_NOT_SUPPORT": "Params website not support. Must chosen from {0} .",
         "SEARCH_DESC": "search manga by keyword",
         "NO_SEARCH_RESULT": "No result found.",
-        "LISTS": "Available table of contents, default 0 (the first one)."
+        "INFO_DESC": "Show the info detail.",
+        "LISTS_DESC": "Show the list of table of contents."
     }
 }
