@@ -47,3 +47,7 @@ manga info ikanman/1014
 ## manga list <网站/id>
 manga list ikanman/1014
 ```
+
+
+## 配置项
+全局配置位于 `bin/manga.config.js` 。目前可配置项仅有语言 `language`，可选值为 `zh-CN`(默认) 和 `en-US`.
