@@ -48,3 +48,6 @@ manga info ikanman/1014
 ## manga list <website/id>
 manga list ikanman/1014
 ```
+
+## Config
+Change global config at file `bin/manga.config.js`. Only support `language`，chosen from `zh-CN`(as default) and `en-US` at present.
