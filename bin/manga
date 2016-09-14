@@ -7,7 +7,7 @@ const i18n = require('lib/i18n').i18n;
 
 const support = require('./support.json');
 const Manga = support.WEBSITES.reduce((requires,name,index) => {
-    requires[name] = require(`crawler/${name}/manga`)['default'];
+    requires[name] = require(`crawler/${name}/manga`);
     return requires;
 },{});
 
