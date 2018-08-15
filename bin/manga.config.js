@@ -1,3 +1,3 @@
 module.exports = {
-    language: 'zh-CN'
+  language: 'zh-CN'
 };

@@ -1,19 +1,19 @@
 import { i18n } from 'lib/i18n';
 
-export function capitalize(str){
+export function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // use to add left padding on index, to make sure the directionary always in current order.
-export function indexPad(str){
+export function indexPad(str) {
     str = str + '';
     let pad = "0000"
     return pad.substring(0, pad.length - str.length) + str
 }
 
 export class NotImplementedError extends Error {
-    constructor(name,fileName,lineNumber){
+    constructor(name, fileName, lineNumber) {
         let message = name ? i18n.MESSAGE.ERRORS.NOT_IMPLEMENTED_ERROR.format(name) : '';
-        super(message,fileName,lineNumber);
+        super(message, fileName, lineNumber);
     }
 }
