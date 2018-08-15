@@ -29,7 +29,6 @@
   "scripts": {
     "build": "babel src -d dist/ --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "node preinstall.js",
     "postinstall": "npm run build && node postinstall.js"
   },
   "keywords": [
