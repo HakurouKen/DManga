@@ -21,7 +21,7 @@ interface downloadOptions {
 }
 
 export async function download(src: string, dest: string, options: downloadOptions = {}): Promise<{}> {
-  const { headers = {}, timeout = 20000, onProgress = () => { } } = options;
+  const { headers = {}, timeout = 30000, onProgress = () => { } } = options;
 
   return new Promise((resolve, reject) => {
     superagent(src).set(headers).timeout(timeout).on('progress', onProgress)
