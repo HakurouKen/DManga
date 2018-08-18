@@ -7,6 +7,7 @@
     "@types/cheerio": "^0.22.8",
     "@types/superagent": "^3.8.3",
     "cheerio": "^1.0.0-rc.2",
+    "p-queue": "^2.4.2",
     "superagent": "^3.8.3"
   },
   "devDependencies": {
