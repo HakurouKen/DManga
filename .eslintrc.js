@@ -1,7 +1,7 @@
 module.exports = {
   "parser": "typescript-eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 2017,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
@@ -21,7 +21,9 @@ module.exports = {
     "typescript"
   ],
   "rules": {
-    "no-undef": ["off"],
-    "no-console": ["off"]
+    "import/no-unresolved": "off",
+    "no-console": "off",
+    "no-undef": "off",
+    "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }]
   }
 };
