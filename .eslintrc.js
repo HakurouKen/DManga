@@ -1,12 +1,7 @@
 module.exports = {
-  "parser": "typescript-eslint-parser",
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "modules": true
-    },
+    "sourceType": "module"
   },
   "env": {
     "node": true,
@@ -21,10 +16,16 @@ module.exports = {
     "typescript"
   ],
   "rules": {
-    "import/no-unresolved": "off",
     "no-console": "off",
-    "no-undef": "off",
     "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }],
-    "typescript/no-unused-vars": ["error"]
+  },
+  "overrides": {
+    "files": ["**/*.ts"],
+    "parser": "typescript-eslint-parser",
+    "rules": {
+      "import/no-unresolved": "off",
+      "no-undef": "off",
+      "typescript/no-unused-vars": ["error"]
+    }
   }
 };

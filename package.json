@@ -11,11 +11,16 @@
     "superagent": "^3.8.3"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-typescript": "^0.12.0",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.2",
     "typescript": "^3.0.1",
     "typescript-eslint-parser": "^18.0.0"
@@ -26,8 +31,10 @@
   },
   "scripts": {
     "build": "rimraf lib && tsc",
-    "lint": "eslint src --ext .ts --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:src": "eslint src --ext .ts --fix",
+    "lint:test": "eslint test --fix",
+    "test:only": "mocha --require ./test/registers.js test/**/*.spec.js",
+    "test": "npm run lint:src && npm run build && npm run lint:test && npm run test:only"
   },
   "keywords": [
     "manga",
