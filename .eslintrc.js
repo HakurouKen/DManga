@@ -24,6 +24,7 @@ module.exports = {
     "import/no-unresolved": "off",
     "no-console": "off",
     "no-undef": "off",
-    "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }]
+    "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }],
+    "typescript/no-unused-vars": ["error"]
   }
 };
