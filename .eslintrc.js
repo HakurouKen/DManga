@@ -24,6 +24,7 @@ module.exports = {
     "parser": "typescript-eslint-parser",
     "rules": {
       "import/no-unresolved": "off",
+      "import/prefer-default-export": "off",
       "no-undef": "off",
       "typescript/no-unused-vars": ["error"]
     }
