@@ -26,9 +26,9 @@ export async function fetchJson(url: string): Promise<{}> {
 }
 
 interface downloadOptions {
-  headers?: object,
-  timeout?: number | { response?: number, deadline?: number },
-  onProgress?: (evt: {}) => void
+  headers?: object;
+  timeout?: number | { response?: number; deadline?: number };
+  onProgress?: (evt: {}) => void;
 }
 
 /**
@@ -43,10 +43,13 @@ export async function download(
   dest: string,
   options: downloadOptions = {},
 ): Promise<{}> {
-  const { headers = {}, timeout = 30000, onProgress = () => { } } = options;
+  const { headers = {}, timeout = 30000, onProgress = () => {} } = options;
 
   return new Promise((resolve, reject) => {
-    superagent(src).set(headers).timeout(timeout).on('progress', onProgress)
+    superagent(src)
+      .set(headers)
+      .timeout(timeout)
+      .on('progress', onProgress)
       .on('end', () => resolve())
       .on('error', () => reject())
       .pipe(fs.createWriteStream(dest));
