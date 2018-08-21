@@ -2,6 +2,11 @@ import fs from 'fs';
 import superagent from 'superagent';
 import cheerio from 'cheerio';
 
+/**
+ * Get the cheerio DOM-Object of the given URL.
+ * @param url URL of webpage
+ * @returns $dom
+ */
 export async function fetchDom(url: string): Promise<Cheerio> {
   const response = await superagent(url);
   if (!response.ok) {
@@ -10,6 +15,11 @@ export async function fetchDom(url: string): Promise<Cheerio> {
   return cheerio(response.text);
 }
 
+/**
+ * Just like `jQuery.getJSON`
+ * @param url API url
+ * @returns formated JSON
+ */
 export async function fetchJson(url: string): Promise<{}> {
   const response = await superagent(url);
   return response.body;
@@ -21,6 +31,13 @@ interface downloadOptions {
   onProgress?: (evt: {}) => void
 }
 
+/**
+ * Download image.
+ * @param src source URL
+ * @param dest destination path
+ * @param options download options
+ * @returns None
+ */
 export async function download(
   src: string,
   dest: string,
