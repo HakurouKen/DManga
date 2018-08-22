@@ -23,6 +23,10 @@ export function getChapterInfoFromAnchor(
  * @param func stringified function
  */
 export function exec(func: string): any {
-  // eslint-disable-next-line no-new-func
-  return new Function(func)();
+  try {
+    // eslint-disable-next-line no-new-func
+    return new Function(func)();
+  } catch (e) {
+    return null;
+  }
 }
