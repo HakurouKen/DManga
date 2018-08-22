@@ -1,6 +1,12 @@
 import cheerio from 'cheerio';
 import { ChapterInfo } from './types';
 
+/**
+ * Extract chapter info from `<a href="CHAPTER_URL">CHAPTER_NAME</a>`
+ * @param el DOM element
+ * @param domain current domain
+ * @returns chapter info
+ */
 export function getChapterInfoFromAnchor(
   el: Cheerio | CheerioElement,
   domain: string = '',
@@ -10,4 +16,13 @@ export function getChapterInfoFromAnchor(
     name: $el.text().trim(),
     url: `${domain}${$el.attr('href')}`,
   };
+}
+
+/**
+ * Eval
+ * @param func stringified function
+ */
+export function exec(func: string): any {
+  // eslint-disable-next-line no-new-func
+  return new Function(func)();
 }
