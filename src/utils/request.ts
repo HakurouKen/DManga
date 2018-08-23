@@ -7,12 +7,13 @@ import cheerio from 'cheerio';
  * @param url URL of webpage
  * @returns $dom
  */
-export async function fetchDom(url: string): Promise<Cheerio> {
+export async function fetchDocument(url: string): Promise<CheerioStatic> {
   const response = await superagent(url);
   if (!response.ok) {
     throw response;
   }
-  return cheerio(response.text);
+
+  return cheerio.load(response.text);
 }
 
 /**

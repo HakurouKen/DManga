@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import { fetchDom } from '../../utils/request';
+import { fetchDocument } from '../../utils/request';
 import { MangaInfo, ChapterInfo } from '../../utils/types';
 
 const DOMAIN = 'http://www.dm5.com';
@@ -39,22 +39,22 @@ function getChapters($container: Cheerio): ChapterInfo[] {
 export default class DM5 {
   url: string;
 
-  private $dom: Promise<Cheerio> | undefined;
+  private $doc: Promise<CheerioStatic> | undefined;
 
   constructor(url: string) {
     this.url = url;
   }
 
   private $() {
-    if (!this.$dom) {
-      this.$dom = fetchDom(this.url);
+    if (!this.$doc) {
+      this.$doc = fetchDocument(this.url);
     }
-    return this.$dom;
+    return this.$doc;
   }
 
   async getInfo(): Promise<MangaInfo> {
     const $ = await this.$();
-    const $container = $.find('.banner_detail');
+    const $container = $('.banner_detail');
     const $info = $container.find('.info');
     const $name = $info
       .find('.title')
@@ -70,8 +70,8 @@ export default class DM5 {
     const $detail = $container.find('.content');
     $detail.find('a').replaceWith('');
 
-    const $titles = $.find('.detail-list-title a.block');
-    const $panes = $.find('.detail-list-select');
+    const $titles = $('.detail-list-title a.block');
+    const $panes = $('.detail-list-select');
 
     return {
       url: this.url,

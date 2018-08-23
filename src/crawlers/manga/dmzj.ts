@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import { fetchDom } from '../../utils/request';
+import { fetchDocument } from '../../utils/request';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
 import { MangaInfo } from '../../utils/types';
 
@@ -8,32 +8,32 @@ const DOMAIN = 'https://manhua.dmzj.com';
 export default class DmzjManga {
   url: string;
 
-  private $dom: Promise<Cheerio> | undefined;
+  private $doc: Promise<CheerioStatic> | undefined;
 
   constructor(url: string) {
     this.url = url;
   }
 
   private $() {
-    if (!this.$dom) {
-      this.$dom = fetchDom(this.url);
+    if (!this.$doc) {
+      this.$doc = fetchDocument(this.url);
     }
-    return this.$dom;
+    return this.$doc;
   }
 
   async getInfo(): Promise<MangaInfo> {
     const $ = await this.$();
-    const name = $.find('.anim_title_text')
+    const name = $('.anim_title_text')
       .text()
       .trim();
-    const $infos = $.find('.anim-main_list table td');
-    const $versionContents = $.find('.photo_part+.cartoon_online_border_other');
+    const $infos = $('.anim-main_list table td');
+    const $versionContents = $('.photo_part+.cartoon_online_border_other');
     const $versionTitles = $versionContents.next();
 
     return {
       url: this.url,
       name,
-      cover: $.find('#cover_pic').attr('src'),
+      cover: $('#cover_pic').attr('src'),
       authors: $infos
         .eq(2)
         .find('a')
@@ -48,11 +48,11 @@ export default class DmzjManga {
           .text()
           .trim() === '已完结',
       // remove last line ad.
-      detail: $.find('.line_height_content')
+      detail: $('.line_height_content')
         .text()
         .trim()
         .replace(/\n(.*)?$/, ''),
-      chapters: $.find('.cartoon_online_border li a')
+      chapters: $('.cartoon_online_border li a')
         .toArray()
         .map(el => getChapterInfoFromAnchor(el, DOMAIN)),
       otherVersions: $versionTitles.toArray().map((title, i) => {
