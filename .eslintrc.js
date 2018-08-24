@@ -25,6 +25,7 @@ module.exports = {
     "rules": {
       "import/no-unresolved": "off",
       "import/prefer-default-export": "off",
+      "no-plusplus": "off",
       "no-undef": "off",
       "typescript/no-unused-vars": ["error"]
     }
