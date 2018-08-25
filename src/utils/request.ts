@@ -1,6 +1,13 @@
 import fs from 'fs';
+import path from 'path';
+import querystring from 'querystring';
+
+import fsExtra from 'fs-extra';
 import superagent from 'superagent';
 import cheerio from 'cheerio';
+import PQueue from 'p-queue';
+import template from 'string-template';
+import { numLeftPad, noop } from './misc';
 
 /**
  * Get the cheerio DOM-Object of the given URL.
@@ -40,14 +47,14 @@ interface downloadOptions {
  * @returns None
  */
 export async function download(
-  src: string,
+  source: string,
   dest: string,
   options: downloadOptions = {},
 ): Promise<{}> {
   const { headers = {}, timeout = 30000, onProgress = () => {} } = options;
 
   return new Promise((resolve, reject) => {
-    superagent(src)
+    superagent(source)
       .set(headers)
       .timeout(timeout)
       .on('progress', onProgress)
@@ -55,4 +62,51 @@ export async function download(
       .on('error', () => reject())
       .pipe(fs.createWriteStream(dest));
   });
+}
+
+let downloadQueue: PQueue;
+function getDownloadQueue() {
+  if (!downloadQueue) {
+    downloadQueue = new PQueue({ concurrency: 5 });
+  }
+  return downloadQueue;
+}
+
+interface batchDownloadOptions extends downloadOptions {
+  onTaskStart?: (dest: string) => void;
+  onTaskFinished?: (err: Error | null, dest: string) => void;
+}
+
+export async function batchDownload(
+  sources: string[],
+  destTemplate: string,
+  options: batchDownloadOptions = {},
+): Promise<{}> {
+  const { onTaskStart = noop, onTaskFinished = noop, ...downloadOptions } = options;
+  const queue = getDownloadQueue();
+
+  const fns = sources.map((source, index) => async () => {
+    const suffix = path.extname(source);
+    const originalName = querystring.unescape(path.basename(source));
+    const autoIndex = numLeftPad(index + 1, sources.length);
+    const dest = template(destTemplate, {
+      index,
+      originalName,
+      suffix,
+      autoIndex,
+    });
+
+    try {
+      onTaskStart(dest);
+      // needs to be checked each time, because the base-dir may not be the same
+      await fsExtra.ensureDir(path.dirname(dest));
+      const done = await download(source, dest, downloadOptions);
+      onTaskFinished(null, dest);
+      return done;
+    } catch (err) {
+      onTaskFinished(err, dest);
+      throw err;
+    }
+  });
+  return queue.addAll(fns);
 }

@@ -59,3 +59,5 @@ export function leftPad(s: string, l: number, ch: string = ' '): string {
 export function numLeftPad(n: number | string, max: number): string {
   return leftPad(String(n), max.toFixed(0).length, '0');
 }
+
+export function noop() {}
