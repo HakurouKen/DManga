@@ -30,3 +30,32 @@ export function exec(func: string): any {
     return null;
   }
 }
+
+/**
+ * String Left-Pad.
+ * https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
+ *
+ * @param s source string
+ * @param l target length
+ * @param ch padding string
+ */
+export function leftPad(s: string, l: number, ch: string = ' '): string {
+  const padLength = l - s.length;
+  if (padLength <= 0) {
+    return s;
+  }
+  let pad = ch;
+  if (padLength > ch.length) {
+    pad += ch.repeat(padLength / ch.length);
+  }
+  return pad.slice(0, padLength) + s;
+}
+
+/**
+ * Left-Pad for number. Useful for generate series filename.
+ * @param n number
+ * @param max Max
+ */
+export function numLeftPad(n: number | string, max: number): string {
+  return leftPad(String(n), max.toFixed(0).length, '0');
+}
