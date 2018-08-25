@@ -10,7 +10,7 @@ describe('Dmzj', () => {
     });
 
     it('contains manga\'s info', () => {
-      // fullname
+      // full name
       info.name.should.equal('一拳超人');
       // url
       info.url.should.equal('https://manhua.dmzj.com/yiquanchaoren');
@@ -18,6 +18,7 @@ describe('Dmzj', () => {
       info.cover.should.match(/\.(jpe?g|png|gif)$/);
       // authors, needs to be an array
       info.authors.should.deep.equal(['村田雄介', 'ONE']);
+      // whether manga is ended
       info.end.should.be.false();
       // descriptions
       info.detail.should.not.empty();
