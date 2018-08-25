@@ -5,9 +5,12 @@
   "main": "lib/index.js",
   "dependencies": {
     "@types/cheerio": "^0.22.8",
+    "@types/p-queue": "^2.3.1",
+    "@types/string-template": "^1.0.2",
     "@types/superagent": "^3.8.3",
     "cheerio": "^1.0.0-rc.2",
     "p-queue": "^2.4.2",
+    "string-template": "^1.0.0",
     "superagent": "^3.8.3"
   },
   "devDependencies": {
