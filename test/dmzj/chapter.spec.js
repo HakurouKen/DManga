@@ -15,7 +15,7 @@ describe('Dmzj', () => {
 
     this.timeout(120 * 1e3);
 
-    it('download the manga chapter', async function () {
+    it('should download the manga chapter', async function () {
       const chapter = new Chapter('https://manhua.dmzj.com/lanqiufeiren/43293.shtml');
       await chapter.download(path.join(TEST_DIR, '{autoIndex}{suffix}'));
       // check the first image
