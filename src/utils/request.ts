@@ -72,6 +72,13 @@ function getDownloadQueue() {
   return downloadQueue;
 }
 
+interface destData {
+  index: number;
+  originalName: string;
+  suffix: string;
+  autoIndex: string;
+}
+
 interface batchDownloadOptions extends downloadOptions {
   onTaskStart?: (dest: string) => void;
   onTaskFinished?: (err: Error | null, dest: string) => void;
@@ -79,7 +86,7 @@ interface batchDownloadOptions extends downloadOptions {
 
 export async function batchDownload(
   sources: string[],
-  destTemplate: string,
+  destTemplate: string | ((data: destData) => string),
   options: batchDownloadOptions = {},
 ): Promise<{}> {
   const { onTaskStart = noop, onTaskFinished = noop, ...downloadOptions } = options;
@@ -89,12 +96,13 @@ export async function batchDownload(
     const suffix = path.extname(source);
     const originalName = querystring.unescape(path.basename(source));
     const autoIndex = numLeftPad(index + 1, sources.length);
-    const dest = template(destTemplate, {
-      index,
+    const data = {
+      index: index + 1,
       originalName,
       suffix,
       autoIndex,
-    });
+    };
+    const dest = typeof destTemplate === 'string' ? template(destTemplate, data) : destTemplate(data);
 
     try {
       onTaskStart(dest);
