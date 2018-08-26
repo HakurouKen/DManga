@@ -1,12 +1,11 @@
-import DmzjManga from '../../lib/crawlers/manga/dmzj';
+import Manga from '../../lib/crawlers/dmzj/manga';
 
 describe('Dmzj', () => {
   describe('Manga#getInfo', () => {
     let info;
-    before(async () => {
-      const manga = new DmzjManga('https://manhua.dmzj.com/yiquanchaoren');
+    beforeEach(async () => {
+      const manga = new Manga('https://manhua.dmzj.com/yiquanchaoren');
       info = await manga.getInfo();
-      return info;
     });
 
     it('contains manga\'s info', () => {

@@ -1,12 +1,11 @@
-import Dm5Manga from '../../lib/crawlers/manga/dm5';
+import Manga from '../../lib/crawlers/dm5/manga';
 
 describe('Dm5', () => {
   describe('Manga#getInfo', () => {
     let info;
-    before(async () => {
-      const manga = new Dm5Manga('http://www.dm5.com/manhua-shanchangzhuolongrende-yuan-gaomutongxue/');
+    beforeEach(async () => {
+      const manga = new Manga('http://www.dm5.com/manhua-shanchangzhuolongrende-yuan-gaomutongxue/');
       info = await manga.getInfo();
-      return info;
     });
 
     it('contains manga\'s info', () => {
