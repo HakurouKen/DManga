@@ -16,7 +16,10 @@ module.exports = {
     "typescript"
   ],
   "rules": {
+    "func-names": "off",
+    "import/prefer-default-export": "off",
     "no-console": "off",
+    "no-plusplus": "off",
     "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }],
   },
   "overrides": {
@@ -24,8 +27,6 @@ module.exports = {
     "parser": "typescript-eslint-parser",
     "rules": {
       "import/no-unresolved": "off",
-      "import/prefer-default-export": "off",
-      "no-plusplus": "off",
       "no-undef": "off",
       "typescript/no-unused-vars": ["error"]
     }
