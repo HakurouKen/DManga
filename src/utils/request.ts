@@ -108,9 +108,9 @@ export async function batchDownload(
       onTaskStart(dest);
       // needs to be checked each time, because the base-dir may not be the same
       await fsExtra.ensureDir(path.dirname(dest));
-      const done = await download(source, dest, downloadOptions);
+      await download(source, dest, downloadOptions);
       onTaskFinished(null, dest);
-      return done;
+      return dest;
     } catch (err) {
       onTaskFinished(err, dest);
       throw err;
