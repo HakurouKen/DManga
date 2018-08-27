@@ -18,6 +18,7 @@ module.exports = {
   "rules": {
     "func-names": "off",
     "import/prefer-default-export": "off",
+    "no-await-in-loop": "off",
     "no-console": "off",
     "no-plusplus": "off",
     "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }],
