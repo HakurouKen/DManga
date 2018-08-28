@@ -10,26 +10,37 @@ import template from 'string-template';
 import { numLeftPad, noop } from './misc';
 
 /**
- * Get the cheerio DOM-Object of the given URL.
- * @param url URL of webpage
- * @returns $dom
+ * Fetch the original text of url given.
+ * @param source source URL
+ * @param headers extra http headers
  */
-export async function fetchDocument(url: string): Promise<CheerioStatic> {
-  const response = await superagent(url);
+export async function fetchText(source: string, headers: object = {}): Promise<string> {
+  const response = await superagent(source).set(headers);
   if (!response.ok) {
     throw response;
   }
+  return response.text;
+}
 
-  return cheerio.load(response.text);
+/**
+ * Get the cheerio DOM-Object of the given URL.
+ * @param source URL of webpage
+ * @param headers extra http headers
+ * @returns $dom
+ */
+export async function fetchDocument(source: string, headers: object = {}): Promise<CheerioStatic> {
+  const response = await fetchText(source, headers);
+  return cheerio.load(response);
 }
 
 /**
  * Just like `jQuery.getJSON`
- * @param url API url
+ * @param source API url
+ * @param headers extra http headers
  * @returns formated JSON
  */
-export async function fetchJson(url: string): Promise<{}> {
-  const response = await superagent(url);
+export async function fetchJson(source: string, headers: object = {}): Promise<any> {
+  const response = await superagent(source).set(headers);
   return response.body;
 }
 
