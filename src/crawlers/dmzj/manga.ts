@@ -1,26 +1,11 @@
 import cheerio from 'cheerio';
-import { fetchDocument } from '../../utils/request';
+import BaseManga from '../../base/manga';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
 import { MangaInfo } from '../../utils/types';
 
 const DOMAIN = 'https://manhua.dmzj.com';
 
-export default class DmzjManga {
-  url: string;
-
-  private $doc: Promise<CheerioStatic> | undefined;
-
-  constructor(url: string) {
-    this.url = url;
-  }
-
-  private $() {
-    if (!this.$doc) {
-      this.$doc = fetchDocument(this.url);
-    }
-    return this.$doc;
-  }
-
+export default class DmzjManga extends BaseManga {
   async getInfo(): Promise<MangaInfo> {
     const $ = await this.$();
     const name = $('.anim_title_text')

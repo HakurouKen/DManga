@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import { fetchDocument } from '../../utils/request';
+import BaseManga from '../../base/manga';
 import { MangaInfo, ChapterInfo } from '../../utils/types';
 
 const DOMAIN = 'http://www.dm5.com';
@@ -36,22 +36,7 @@ function getChapters($container: Cheerio): ChapterInfo[] {
     .reverse();
 }
 
-export default class DM5 {
-  url: string;
-
-  private $doc: Promise<CheerioStatic> | undefined;
-
-  constructor(url: string) {
-    this.url = url;
-  }
-
-  private $() {
-    if (!this.$doc) {
-      this.$doc = fetchDocument(this.url);
-    }
-    return this.$doc;
-  }
-
+export default class DM5Manga extends BaseManga {
   async getInfo(): Promise<MangaInfo> {
     const $ = await this.$();
     const $container = $('.banner_detail');
