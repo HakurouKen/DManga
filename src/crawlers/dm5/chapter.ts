@@ -1,6 +1,5 @@
 import url from 'url';
 import cheerio from 'cheerio';
-import superagent from 'superagent';
 import { fetchText, batchDownload, fetchDocument } from '../../utils/request';
 import { exec } from '../../utils/misc';
 
