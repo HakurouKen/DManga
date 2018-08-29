@@ -1,4 +1,5 @@
 import fs from 'fs';
+import url from 'url';
 import path from 'path';
 import querystring from 'querystring';
 
@@ -85,9 +86,10 @@ function getDownloadQueue() {
 
 interface destData {
   index: number;
-  originalName: string;
+  'name': string;
   suffix: string;
   autoIndex: string;
+  path: string;
 }
 
 interface batchDownloadOptions extends downloadOptions {
@@ -104,14 +106,16 @@ export async function batchDownload(
   const queue = getDownloadQueue();
 
   const fns = sources.map((source, index) => async () => {
-    const suffix = path.extname(source);
-    const originalName = querystring.unescape(path.basename(source));
+    const { pathname = '' } = url.parse(source);
+    const suffix = path.extname(pathname);
+    const name = querystring.unescape(path.basename(pathname));
     const autoIndex = numLeftPad(index + 1, sources.length);
     const data = {
       index: index + 1,
-      originalName,
+      name,
       suffix,
       autoIndex,
+      path: pathname,
     };
     const dest = typeof destTemplate === 'string' ? template(destTemplate, data) : destTemplate(data);
 
