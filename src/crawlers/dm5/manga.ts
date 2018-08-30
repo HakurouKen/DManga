@@ -1,6 +1,6 @@
 import cheerio from 'cheerio';
 import BaseManga from '../../base/manga';
-import { MangaInfo, ChapterInfo } from '../../utils/types';
+import { ChapterInfo } from '../../utils/types';
 
 const DOMAIN = 'http://www.dm5.com';
 
@@ -37,7 +37,7 @@ function getChapters($container: Cheerio): ChapterInfo[] {
 }
 
 export default class DM5Manga extends BaseManga {
-  async getInfo(): Promise<MangaInfo> {
+  async getInfo() {
     const $ = await this.$();
     const $container = $('.banner_detail');
     const $info = $container.find('.info');

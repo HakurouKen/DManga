@@ -1,12 +1,11 @@
 import cheerio from 'cheerio';
 import BaseManga from '../../base/manga';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
-import { MangaInfo } from '../../utils/types';
 
 const DOMAIN = 'https://manhua.dmzj.com';
 
 export default class DmzjManga extends BaseManga {
-  async getInfo(): Promise<MangaInfo> {
+  async getInfo() {
     const $ = await this.$();
     const name = $('.anim_title_text')
       .text()
