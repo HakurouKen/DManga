@@ -15,7 +15,7 @@ describe('DM5', () => {
 
     this.timeout(120 * 1e3);
 
-    it.only('should download the manga chapter', async function () {
+    it('should download the manga chapter', async function () {
       const chapter = new Chapter('http://www.dm5.com/m503087/');
       await chapter.download(path.join(TEST_DIR, '{name}'));
       fs.existsSync(path.join(TEST_DIR, '9_3128.jpg')).should.be.true();
