@@ -1,3 +1,4 @@
+import { VM } from 'vm2';
 import cheerio from 'cheerio';
 import { ChapterInfo } from './types';
 
@@ -23,12 +24,10 @@ export function getChapterInfoFromAnchor(
  * @param func stringified function
  */
 export function exec(func: string): any {
-  try {
-    // eslint-disable-next-line no-new-func
-    return new Function(func)();
-  } catch (e) {
-    return null;
-  }
+  const vm = new VM({
+    sandbox: {},
+  });
+  return vm.run(func);
 }
 
 /**

@@ -1,15 +1,10 @@
 import cheerio from 'cheerio';
-import { fetchDocument, batchDownload } from '../../utils/request';
+import Chapter from '../../base/chapter';
+import { fetchDocument } from '../../utils/request';
 import { exec } from '../../utils/misc';
 
-export default class DmzjChapter {
-  url: string;
-
+export default class DmzjChapter extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
-
-  constructor(url: string) {
-    this.url = url;
-  }
 
   private $() {
     if (!this.$doc) {
@@ -34,20 +29,12 @@ export default class DmzjChapter {
     }
 
     try {
-      const sourceCode = exec(`var pages;${encryptedSourceCode};return pages;`);
-      return JSON.parse(sourceCode).map((url: string) => `https://images.dmzj.com/${url}`);
+      const sourceCode = exec(`${encryptedSourceCode};arr_pages;`);
+      return sourceCode.map((imageUrl: string) => `https://images.dmzj.com/${imageUrl}`);
     } catch (e) {
       // do nothing
+      console.error(e);
       return [];
     }
-  }
-
-  async download(dest: string): Promise<{}> {
-    const urls = await this.getUrls();
-    return batchDownload(urls, dest, {
-      headers: {
-        referer: this.url,
-      },
-    });
   }
 }

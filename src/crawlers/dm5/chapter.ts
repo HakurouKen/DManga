@@ -1,6 +1,7 @@
 import url from 'url';
 import cheerio from 'cheerio';
-import { fetchText, batchDownload, fetchDocument } from '../../utils/request';
+import Chapter from '../../base/chapter';
+import { fetchText, fetchDocument } from '../../utils/request';
 import { exec } from '../../utils/misc';
 
 interface metaData {
@@ -37,16 +38,8 @@ function getMeta(source: string, key: string): any {
   return null;
 }
 
-export default class Dm5Chapter {
-  url: string;
-
+export default class Dm5Chapter extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
-
-  private cookies: string = '';
-
-  constructor(pageUrl: string) {
-    this.url = pageUrl;
-  }
 
   private $() {
     if (!this.$doc) {
@@ -96,7 +89,7 @@ export default class Dm5Chapter {
         referer: this.url,
       });
       try {
-        const nextUrls = exec(`${responseText};return d;`);
+        const nextUrls = exec(responseText).d;
         if (!nextUrls.length) {
           throw new Error();
         }
@@ -107,14 +100,5 @@ export default class Dm5Chapter {
       }
     }
     return urls;
-  }
-
-  async download(dest: string) {
-    const urls = await this.getUrls();
-    return batchDownload(urls, dest, {
-      headers: {
-        referer: this.url,
-      },
-    });
   }
 }
