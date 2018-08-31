@@ -89,7 +89,7 @@ export default class Dm5Chapter extends Chapter {
         referer: this.url,
       });
       try {
-        const nextUrls = exec(responseText).d;
+        const nextUrls = exec(`${responseText};d;`);
         if (!nextUrls.length) {
           throw new Error();
         }
