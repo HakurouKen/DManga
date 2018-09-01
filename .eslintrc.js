@@ -23,7 +23,7 @@ module.exports = {
     "no-plusplus": "off",
     "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }],
   },
-  "overrides": {
+  "overrides": [{
     "files": ["**/*.ts"],
     "parser": "typescript-eslint-parser",
     "rules": {
@@ -31,5 +31,10 @@ module.exports = {
       "no-undef": "off",
       "typescript/no-unused-vars": ["error"]
     }
-  }
+  }, {
+    "files": ["scripts/**/*"],
+    "rules": {
+      "import/no-extraneous-dependencies": "off"
+    }
+  }]
 };
