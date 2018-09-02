@@ -29,6 +29,9 @@ module.exports = {
     "rules": {
       "import/no-unresolved": "off",
       "no-undef": "off",
+      "typescript/member-ordering": ["error"],
+      "typescript/no-array-constructor": ["error"],
+      "typescript/no-triple-slash-reference": ["error"],
       "typescript/no-unused-vars": ["error"]
     }
   }, {
