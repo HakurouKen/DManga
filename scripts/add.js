@@ -25,12 +25,21 @@ function main() {
     console.log('Name Required');
     process.exit(1);
   }
-  generate(path.join(__dirname, 'templates'), path.join(__dirname, '..', `src/crawlers/${name}`), {
+
+  const data = {
     name: {
       capitalized: capitalize(name),
       normal: name,
     },
-  });
+  };
+
+  generate(
+    path.join(__dirname, 'templates/src'),
+    path.join(__dirname, '..', `src/crawlers/${name}`),
+    data,
+  );
+
+  generate(path.join(__dirname, 'templates/test'), path.join(__dirname, '..', `test/${name}`), data);
 }
 
 main();

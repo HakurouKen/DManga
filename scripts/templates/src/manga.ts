@@ -1,5 +1,4 @@
 import BaseManga from '../../base/manga';
-import { ChapterInfo } from '../../utils/types';
 
 export default class <%= name.capitalized %>Manga extends BaseManga {
   async getInfo() {
