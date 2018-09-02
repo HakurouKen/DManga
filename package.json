@@ -42,6 +42,7 @@
   "scripts": {
     "add": "node scripts/add.js",
     "build": "rimraf lib && tsc",
+    "lint": "npm run lint:src && npm run lint:test",
     "lint:src": "eslint src --ext .ts --fix",
     "lint:test": "eslint test --fix",
     "test:only": "mocha --require ./test/registers.js test/**/*.spec.js",
