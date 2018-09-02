@@ -27,22 +27,20 @@ export default class ManhuataiChapter extends Chapter {
     const INFO_MATCH_REGEXP = /var\s+mh_info\s*=\s*\{(.+?)\}\s*;/;
     const sourceCode = findScript($, INFO_MATCH_REGEXP);
 
-    try {
-      const info = exec(`${sourceCode.match(INFO_MATCH_REGEXP)![0]};mh_info;`);
-      // Encrypted code: `window.prompt(__cr.decode)`
-      const imgPath = info.imgpath.replace(/./g, (a: string) => String.fromCharCode(a.charCodeAt(0) - (info.pageid % 10)));
-      // Randomly choose one domain.
-      const domain = this.domains[Math.floor(Math.random() * this.domains.length)];
-      const start: number = info.startimg;
-      const end: number = info.totalimg;
-      return Array.from(
-        { length: end - start + 1 },
-        (v, i) => `https://${domain}/comic/${imgPath}${i + start}.jpg-noresize`,
-      );
-    } catch (e) {
-      // do nothing
-      console.log(e);
+    const info = exec(`${sourceCode.match(INFO_MATCH_REGEXP)![0]};mh_info;`);
+    if (!info) {
       return [];
     }
+
+    // Encrypted code: `window.prompt(__cr.decode)`
+    const imgPath = info.imgpath.replace(/./g, (a: string) => String.fromCharCode(a.charCodeAt(0) - (info.pageid % 10)));
+    // Randomly choose one domain.
+    const domain = this.domains[Math.floor(Math.random() * this.domains.length)];
+    const start: number = info.startimg;
+    const end: number = info.totalimg;
+    return Array.from(
+      { length: end - start + 1 },
+      (v, i) => `https://${domain}/comic/${imgPath}${i + start}.jpg-noresize`,
+    );
   }
 }

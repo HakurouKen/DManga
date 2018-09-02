@@ -49,7 +49,11 @@ export function exec(func: string): any {
   const vm = new VM({
     sandbox: {},
   });
-  return vm.run(func);
+  try {
+    return vm.run(func);
+  } catch (e) {
+    return null;
+  }
 }
 
 /**
