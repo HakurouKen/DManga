@@ -56,5 +56,3 @@ export default class ManhuataiChapter extends Chapter {
     }
   }
 }
-
-new ManhuataiChapter('http://www.manhuatai.com/baoshizhiguo/01.html').getUrls().then(console.log);
