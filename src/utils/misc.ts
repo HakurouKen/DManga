@@ -19,6 +19,28 @@ export function getChapterInfoFromAnchor(
   };
 }
 
+export function findScript($: CheerioStatic, feature: string | RegExp): string {
+  const scripts = $('script')
+    .not('[src]')
+    .toArray();
+
+  let isMatch: (s: string) => boolean;
+  if (typeof feature === 'string') {
+    isMatch = s => s.indexOf(feature) >= 0;
+  } else {
+    isMatch = s => feature.test(s);
+  }
+
+  for (let i = 0; i < scripts.length; i++) {
+    const source = cheerio(scripts[i]).html() || '';
+    if (isMatch(source)) {
+      return source;
+    }
+  }
+
+  return '';
+}
+
 /**
  * Eval
  * @param func stringified function

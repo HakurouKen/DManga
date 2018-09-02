@@ -1,7 +1,6 @@
-import cheerio from 'cheerio';
 import Chapter from '../../base/chapter';
 import { fetchDocument } from '../../utils/request';
-import { exec } from '../../utils/misc';
+import { exec, findScript } from '../../utils/misc';
 
 export default class ManhuataiChapter extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
@@ -24,22 +23,12 @@ export default class ManhuataiChapter extends Chapter {
 
   async getUrls(): Promise<string[]> {
     const $ = await this.$();
-    const scripts = $('script')
-      .not('[src]')
-      .toArray();
 
-    let sourceCode = '';
-    for (let i = 0; i < scripts.length; i++) {
-      const source = cheerio(scripts[i]).html() || '';
-      if (source.indexOf('var mh_info=') >= 0) {
-        const matched = source.match(/var\s+mh_info\s*=\s*\{(.+?)\}\s*;/) || [];
-        sourceCode = matched[0] || '';
-        break;
-      }
-    }
+    const INFO_MATCH_REGEXP = /var\s+mh_info\s*=\s*\{(.+?)\}\s*;/;
+    const sourceCode = findScript($, INFO_MATCH_REGEXP);
 
     try {
-      const info = exec(`${sourceCode};mh_info;`);
+      const info = exec(`${sourceCode.match(INFO_MATCH_REGEXP)![0]};mh_info;`);
       // Encrypted code: `window.prompt(__cr.decode)`
       const imgPath = info.imgpath.replace(/./g, (a: string) => String.fromCharCode(a.charCodeAt(0) - (info.pageid % 10)));
       // Randomly choose one domain.
@@ -52,6 +41,7 @@ export default class ManhuataiChapter extends Chapter {
       );
     } catch (e) {
       // do nothing
+      console.log(e);
       return [];
     }
   }
