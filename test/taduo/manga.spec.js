@@ -8,7 +8,7 @@ describe('Taduo', () => {
       info = await manga.getInfo();
     });
 
-    it.only('contains manga\'s info', () => {
+    it("contains manga's info", () => {
       // full name
       info.name.should.equal('甘城光辉游乐园');
       // url

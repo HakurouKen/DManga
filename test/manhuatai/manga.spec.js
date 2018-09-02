@@ -8,7 +8,7 @@ describe('Manhuatai', () => {
       info = await manga.getInfo();
     });
 
-    it('contains manga\'s info', () => {
+    it("contains manga's info", () => {
       // full name
       info.name.should.equal('爆笑校园');
       // url

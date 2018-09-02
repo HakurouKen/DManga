@@ -4,11 +4,13 @@ describe('Dm5', () => {
   describe('Manga#getInfo', () => {
     let info;
     beforeEach(async () => {
-      const manga = new Manga('http://www.dm5.com/manhua-shanchangzhuolongrende-yuan-gaomutongxue/');
+      const manga = new Manga(
+        'http://www.dm5.com/manhua-shanchangzhuolongrende-yuan-gaomutongxue/',
+      );
       info = await manga.getInfo();
     });
 
-    it('contains manga\'s info', () => {
+    it("contains manga's info", () => {
       // full name
       info.name.should.equal('擅长捉弄人的(原)高木同学');
       // url

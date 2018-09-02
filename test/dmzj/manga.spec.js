@@ -8,7 +8,7 @@ describe('Dmzj', () => {
       info = await manga.getInfo();
     });
 
-    it('contains manga\'s info', () => {
+    it("contains manga's info", () => {
       // full name
       info.name.should.equal('一拳超人');
       // url
