@@ -5,10 +5,21 @@ import querystring from 'querystring';
 
 import fsExtra from 'fs-extra';
 import superagent from 'superagent';
+import superagentCharset from 'superagent-charset';
 import cheerio from 'cheerio';
 import PQueue from 'p-queue';
 import template from 'string-template';
+
 import { numLeftPad, noop } from './misc';
+
+const superagentWithCharset = superagentCharset(superagent);
+/**
+ * A basic superagent (with superagent-charset) wrapper.
+ * @param requestUrl request URL
+ */
+export function request(requestUrl: string) {
+  return superagentWithCharset(requestUrl);
+}
 
 /**
  * Fetch the original text of url given.
@@ -16,7 +27,9 @@ import { numLeftPad, noop } from './misc';
  * @param headers extra http headers
  */
 export async function fetchText(source: string, headers: object = {}): Promise<string> {
-  const response = await superagent(source).set(headers);
+  const response = await request(source)
+    .set(headers)
+    .charset();
   if (!response.ok) {
     throw response;
   }
