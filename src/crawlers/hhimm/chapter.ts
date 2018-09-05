@@ -35,21 +35,27 @@ export default class HhimmChapter extends Chapter {
     return this.url.replace(/\d+\.html/, `${index + 1}.html`);
   }
 
-  private async fetchTwo(index: number | CheerioStatic): Promise<string[]> {
+  private async fetchUrls(
+    index: number | CheerioStatic,
+    isSingle: boolean = false,
+  ): Promise<string[]> {
     const $ = await (typeof index === 'number' ? fetchDocument(this.buildUrl(index)) : index);
     const name = $('#img1021,#img2391,#img7652,#imgCurr').attr('name');
     const nextName = $('#hdNextImg').val();
-    return [decode(name), decode(nextName)].map(s => `${this.site}${s}`);
+    return [decode(name)].concat(isSingle ? [] : [decode(nextName)]).map(s => `${this.site}${s}`);
   }
 
   async getUrls(): Promise<string[]> {
     const $ = await fetchDocument(this.url);
     const total = $('#iPageHtm a').length;
-    let urls: string[] = [];
-    for (let i = 0; i < total; i += 2) {
-      const results = await this.fetchTwo(i === 0 ? $ : i);
-      urls = urls.concat(results);
-    }
-    return urls;
+    const urlPairs = await this.queue.addAll(
+      Array.from({ length: Math.floor(total / 2) }, (_, k) => k * 2).map(index => () => {
+        if (index === 0) {
+          return this.fetchUrls($);
+        }
+        return this.fetchUrls(index, index === total - 1);
+      }),
+    );
+    return urlPairs.reduce((urls, pair) => urls.concat(pair), []);
   }
 }
