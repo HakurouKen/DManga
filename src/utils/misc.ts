@@ -85,4 +85,13 @@ export function numLeftPad(n: number | string, max: number): string {
   return leftPad(String(n), max.toFixed(0).length, '0');
 }
 
+/**
+ * Get a random item from an array.
+ * @param arr T[]
+ * @returns T A member of arr
+ */
+export function choice<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 export function noop() {}
