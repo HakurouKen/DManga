@@ -2,7 +2,7 @@ import Chapter from '../../base/chapter';
 import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
-export default class FmhuaChapter extends Chapter {
+export default class ChapterFmhua extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {

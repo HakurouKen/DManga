@@ -36,7 +36,7 @@ function getChapters($container: Cheerio): ChapterInfo[] {
     .reverse();
 }
 
-export default class DM5Manga extends BaseManga {
+export default class MangaDm5 extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     const $container = $('.banner_detail');

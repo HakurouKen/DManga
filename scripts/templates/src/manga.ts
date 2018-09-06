@@ -1,6 +1,6 @@
 import BaseManga from '../../base/manga';
 
-export default class <%= name.capitalized %>Manga extends BaseManga {
+export default class Manga<%= name.capitalized %> extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     // Some More Codes...

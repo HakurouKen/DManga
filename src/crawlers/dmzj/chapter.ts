@@ -3,7 +3,7 @@ import Chapter from '../../base/chapter';
 import { fetchDocument } from '../../utils/request';
 import { exec } from '../../utils/misc';
 
-export default class DmzjChapter extends Chapter {
+export default class ChapterDmzj extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {

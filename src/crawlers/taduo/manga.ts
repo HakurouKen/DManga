@@ -3,7 +3,7 @@ import { getChapterInfoFromAnchor } from '../../utils/misc';
 
 const DOMAIN = 'http://www.taduo.net/';
 
-export default class TaduoManga extends BaseManga {
+export default class MangaTaduo extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     const $infos = $('.detailInfo ul li');

@@ -18,7 +18,7 @@ function decode(s: string): string {
     .reduce((result, c) => result + String.fromCharCode(parseInt(c, 10)), '');
 }
 
-export default class HhimmChapter extends Chapter {
+export default class ChapterHhimm extends Chapter {
   private static sites = ['http://165.94201314.net/dm02/', 'http://124.94201314.net/dm02/'];
 
   private site: string;
@@ -27,7 +27,7 @@ export default class HhimmChapter extends Chapter {
 
   constructor(url: string) {
     super(url);
-    this.site = choice(HhimmChapter.sites);
+    this.site = choice(ChapterHhimm.sites);
     this.queue = new PQueue({ concurrency: 5 });
   }
 

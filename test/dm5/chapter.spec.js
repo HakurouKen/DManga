@@ -4,7 +4,7 @@ import rimraf from 'rimraf';
 
 import Chapter from '../../lib/crawlers/dm5/chapter';
 
-describe('DM5', () => {
+describe('Dm5', () => {
   describe('Chapter#download', function () {
     const TEST_DIR = 'manga/擅长捉弄人的(原)高木同学/第1话/';
     beforeEach((done) => {

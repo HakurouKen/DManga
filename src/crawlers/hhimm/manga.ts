@@ -20,7 +20,7 @@ function getChapters(
   };
 }
 
-export default class HhimmManga extends BaseManga {
+export default class MangaHhimm extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     const $infos = $('#about_kit li');

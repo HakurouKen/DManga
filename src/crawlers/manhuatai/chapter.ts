@@ -2,7 +2,7 @@ import Chapter from '../../base/chapter';
 import { fetchDocument } from '../../utils/request';
 import { exec, findScript } from '../../utils/misc';
 
-export default class ManhuataiChapter extends Chapter {
+export default class ChapterManhuatai extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
 
   private domains: string[];

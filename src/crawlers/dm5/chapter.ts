@@ -38,7 +38,7 @@ function getMeta(source: string, key: string): any {
   return null;
 }
 
-export default class Dm5Chapter extends Chapter {
+export default class ChapterDm5 extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {

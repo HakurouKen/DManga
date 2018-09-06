@@ -1,7 +1,7 @@
 import BaseManga from '../../base/manga';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
 
-export default class FmhuaManga extends BaseManga {
+export default class MangaFmhua extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     // Some More Codes...

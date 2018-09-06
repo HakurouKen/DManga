@@ -4,7 +4,7 @@ import { getChapterInfoFromAnchor } from '../../utils/misc';
 
 const DOMAIN = 'https://manhua.dmzj.com';
 
-export default class DmzjManga extends BaseManga {
+export default class MangaDmzj extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     const name = $('.anim_title_text')

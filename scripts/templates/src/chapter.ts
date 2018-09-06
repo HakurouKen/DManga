@@ -1,7 +1,7 @@
 import Chapter from '../../base/chapter';
 import { fetchDocument } from '../../utils/request';
 
-export default class <%= name.capitalized %>Chapter extends Chapter {
+export default class Chapter<%= name.capitalized %> extends Chapter {
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {

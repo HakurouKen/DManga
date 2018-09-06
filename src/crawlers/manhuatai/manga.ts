@@ -12,7 +12,7 @@ function getChapters(el: Cheerio | CheerioElement): ChapterInfo[] {
     .map(anchor => getChapterInfoFromAnchor(anchor, DOMAIN));
 }
 
-export default class ManhuataiManga extends BaseManga {
+export default class MangaManhuatai extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     const $infos = $('.jshtml ul>li');

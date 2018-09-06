@@ -15,7 +15,7 @@ describe('Fmhua', () => {
 
     this.timeout(120 * 1e3);
 
-    it.only('should download the manga chapter', async () => {
+    it('should download the manga chapter', async () => {
       const chapter = new Chapter('http://mh.fumanhua.net/manhua/12198/290094.html');
       await chapter.download(path.join(TEST_DIR, '{autoIndex}{suffix}'));
       // check the first image
