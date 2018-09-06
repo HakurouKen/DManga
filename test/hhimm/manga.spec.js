@@ -8,7 +8,7 @@ describe('Hhimm', () => {
       info = await manga.getInfo();
     });
 
-    it.only("contains manga's info", () => {
+    it("contains manga's info", () => {
       info.name.should.equal('姐妹家的种种事');
       info.url.should.equal('http://www.hhimm.com/manhua/28308.html');
       info.cover.should.equal('http://img.94201314.net/comicui/28308.JPG');

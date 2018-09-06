@@ -15,7 +15,7 @@ describe('Hhimm', () => {
 
     this.timeout(120 * 1e3);
 
-    it.only('should download the manga chapter', async () => {
+    it('should download the manga chapter', async () => {
       const chapter = new Chapter('http://www.hhimm.com/cool211984/1.html?s=2');
       await chapter.download(path.join(TEST_DIR, '{autoIndex}{suffix}'));
       // check the first image
