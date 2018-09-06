@@ -32,7 +32,7 @@ export default class MangaDmzj extends BaseManga {
           .text()
           .trim() === '已完结',
       // remove last line ad.
-      detail: $('.line_height_content')
+      description: $('.line_height_content')
         .text()
         .trim()
         .replace(/\n(.*)?$/, ''),

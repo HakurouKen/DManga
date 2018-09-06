@@ -16,8 +16,8 @@ export default class MangaManhuatai extends BaseManga {
   async getInfo() {
     const $ = await this.$();
     const $infos = $('.jshtml ul>li');
-    const $detail = $('.wz');
-    $detail.find('a').remove();
+    const $description = $('.wz');
+    $description.find('a').remove();
 
     const $tabNavs = $('.bookClass [name="topicTab"]');
     return {
@@ -39,7 +39,7 @@ export default class MangaManhuatai extends BaseManga {
           .eq(1)
           .text()
           .trim() === '状态：已完结',
-      detail: $detail.text().trim(),
+      description: $description.text().trim(),
       chapters: getChapters($('#topic1')),
       otherVersions: $('.mhlistbody [name="topiccount"]')
         .slice(1)

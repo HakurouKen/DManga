@@ -12,7 +12,7 @@ export interface MangaInfo {
   cover: string,
   authors: string[],
   end: boolean,
-  detail: string,
+  description: string,
   chapters: ChapterInfo[],
   otherVersions: { 'name': string, chapters: ChapterInfo[] }[]
 }

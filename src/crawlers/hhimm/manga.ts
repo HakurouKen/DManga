@@ -42,7 +42,7 @@ export default class MangaHhimm extends BaseManga {
           .replace(/^\s*作者:\s*|\s+$/g, ''),
       ],
       end: /完/.test($infos.eq(2).text()),
-      detail: $infos
+      description: $infos
         .last()
         .text()
         .replace(/简介\s+:/, ''),

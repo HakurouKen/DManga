@@ -11,7 +11,7 @@ export default class MangaFmhua extends BaseManga {
       cover: `http://mh.fumanhua.net${$('.info_cover img').attr('src')}`,
       authors: [$('.info p')[1].lastChild.nodeValue],
       end: false,
-      detail: $('#intro1')
+      description: $('#intro1')
         .text()
         .trim()
         .replace(/收起$/, ''),

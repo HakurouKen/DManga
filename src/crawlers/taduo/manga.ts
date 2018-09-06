@@ -19,7 +19,7 @@ export default class MangaTaduo extends BaseManga {
           .replace(/^作者：\s*/, ''),
       ],
       end: $('.titleInfo span').text() !== '连载',
-      detail: $('#intro1')
+      description: $('#intro1')
         .text()
         .trim(),
       chapters: $('#play_0 li a')

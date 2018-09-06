@@ -14,7 +14,7 @@ describe('Hhimm', () => {
       info.cover.should.equal('http://img.94201314.net/comicui/28308.JPG');
       info.authors.should.deep.equal(['高野うい']);
       info.end.should.be.true();
-      info.detail.should.not.be.empty();
+      info.description.should.not.be.empty();
       info.chapters.length.should.equal(1);
       info.otherVersions.length.should.equal(1);
       const otherVersion = info.otherVersions[0];

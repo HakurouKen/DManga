@@ -52,8 +52,8 @@ export default class MangaDm5 extends BaseManga {
         .text()
         .split('：')[1] || ''
     ).trim();
-    const $detail = $container.find('.content');
-    $detail.find('a').replaceWith('');
+    const $description = $container.find('.content');
+    $description.find('a').replaceWith('');
 
     const $titles = $('.detail-list-title a.block');
     const $panes = $('.detail-list-select');
@@ -69,7 +69,7 @@ export default class MangaDm5 extends BaseManga {
         .map(elem => cheerio(elem)
           .text()
           .trim()),
-      detail: $detail.text().trim(),
+      description: $description.text().trim(),
       chapters: getChapters($panes.eq(0)),
       otherVersions: $panes
         .slice(1)

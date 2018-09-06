@@ -13,7 +13,7 @@ describe('Fmhua', () => {
       info.url.should.equal('http://mh.fumanhua.net/manhua/10562/');
       info.cover.should.equal('http://mh.fumanhua.net/upload/2013-03-04/201334144029534.jpg');
       info.authors.should.deep.equal(['佐野菜见']);
-      info.detail.should.match(/屌/);
+      info.description.should.match(/屌/);
       info.chapters.length.should.gt(20);
     });
   });

@@ -10,7 +10,7 @@ export default class Manga<%= name.capitalized %> extends BaseManga {
       cover: 'THE_COVER_URL',
       authors: ['AUTHOR'],
       end: false,
-      detail: 'SOME_DESCRIPTION',
+      description: 'SOME_DESCRIPTION',
       chapters: [],
       otherVersions: [],
     };

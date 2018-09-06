@@ -20,7 +20,7 @@ describe('Manhuatai', () => {
       // whether manga is ended
       info.end.should.be.false();
       // descriptions
-      info.detail.should.not.empty();
+      info.description.should.not.empty();
       // chapters
       info.chapters.length.should.gt(5);
       // other versions of manga
