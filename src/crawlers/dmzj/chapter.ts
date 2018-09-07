@@ -28,13 +28,7 @@ export default class ChapterDmzj extends Chapter {
       }
     }
 
-    try {
-      const sourceCode = exec(`${encryptedSourceCode};arr_pages;`);
-      return sourceCode.map((imageUrl: string) => `https://images.dmzj.com/${imageUrl}`);
-    } catch (e) {
-      // do nothing
-      console.error(e);
-      return [];
-    }
+    const sourceCode: string[] = exec(`${encryptedSourceCode};arr_pages;`);
+    return sourceCode.map((imageUrl: string) => `https://images.dmzj.com/${imageUrl}`);
   }
 }
