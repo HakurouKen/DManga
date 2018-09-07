@@ -45,8 +45,9 @@
     "lint": "npm run lint:src && npm run lint:test",
     "lint:src": "eslint src --ext .ts --fix",
     "lint:test": "eslint test --fix",
-    "test:only": "mocha --require ./test/registers.js test/**/*.spec.js",
-    "test": "npm run lint:src && npm run build && npm run lint:test && npm run test:only"
+    "test:run": "mocha --require ./test/registers.js test/**/*.spec.js",
+    "test:dev": "npm run build && npm run test:run",
+    "test": "npm run lint:src && npm run build && npm run lint:test && npm run test:run"
   },
   "keywords": [
     "manga",
