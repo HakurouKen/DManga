@@ -8,7 +8,7 @@ describe('<%= name.capitalized %>', () => {
       info = await manga.getInfo();
     });
 
-    it('contains manga\'s info', () => {
+    it("contains manga's info", () => {
       // Basic test case here.
     });
   });
