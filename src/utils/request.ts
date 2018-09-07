@@ -122,7 +122,7 @@ export async function batchDownload(
     const { pathname = '' } = url.parse(source);
     const suffix = path.extname(pathname);
     const name = querystring.unescape(path.basename(pathname));
-    const autoIndex = numLeftPad(index + 1, sources.length);
+    const autoIndex = numLeftPad(index + 1, Math.max(sources.length.toFixed(0).length, 2));
     const data = {
       index: index + 1,
       name,

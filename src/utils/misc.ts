@@ -79,10 +79,10 @@ export function leftPad(s: string, l: number, ch: string = ' '): string {
 /**
  * Left-Pad for number. Useful for generate series filename.
  * @param n number
- * @param max Max
+ * @param digits max digits.
  */
-export function numLeftPad(n: number | string, max: number): string {
-  return leftPad(String(n), max.toFixed(0).length, '0');
+export function numLeftPad(n: number | string, digits: number = 2): string {
+  return leftPad(String(n), digits, '0');
 }
 
 /**
