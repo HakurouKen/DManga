@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import rimraf from 'rimraf';
 
-import Chapter from '../../lib/crawlers/manhuagui/chapter';
+import Chapter from '../../../lib/crawlers/manhuagui/chapter';
 
 describe('Manhuagui', () => {
   describe('Chapter#download', function () {

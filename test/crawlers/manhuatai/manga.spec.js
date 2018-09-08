@@ -1,4 +1,4 @@
-import Manga from '../../lib/crawlers/manhuatai/manga';
+import Manga from '../../../lib/crawlers/manhuatai/manga';
 
 describe('Manhuatai', () => {
   describe('Manga#getInfo', () => {
