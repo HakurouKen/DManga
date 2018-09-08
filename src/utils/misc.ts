@@ -13,8 +13,9 @@ export function getChapterInfoFromAnchor(
   domain: string = '',
 ): ChapterInfo {
   const $el = cheerio(el);
+  const name = $el.attr('title') || $el.text();
   return {
-    name: $el.text().trim(),
+    name: name.trim(),
     url: `${domain}${$el.attr('href')}`,
   };
 }
@@ -45,13 +46,14 @@ export function findScript($: CheerioStatic, feature: string | RegExp): string {
  * Eval
  * @param func stringified function
  */
-export function exec(func: string): any {
+export function exec(func: string, sandbox: any = {}): any {
   const vm = new VM({
-    sandbox: {},
+    sandbox,
   });
   try {
     return vm.run(func);
   } catch (e) {
+    console.log('error', e);
     return null;
   }
 }
