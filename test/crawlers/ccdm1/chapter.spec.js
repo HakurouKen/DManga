@@ -15,7 +15,7 @@ describe('Ccdm1', () => {
 
     this.timeout(120 * 1e3);
 
-    it.only('should download the manga chapter', async () => {
+    it('should download the manga chapter', async () => {
       const chapter = new Chapter('http://www.ccdm1.com/manhua/12796/99673.html');
       await chapter.download(path.join(TEST_DIR, '{autoIndex}{suffix}'));
       // check the first image
