@@ -44,16 +44,15 @@ export function findScript($: CheerioStatic, feature: string | RegExp): string {
 
 /**
  * Eval
- * @param func stringified function
+ * @param exp stringified expression
  */
-export function exec(func: string, sandbox: any = {}): any {
+export function exec(exp: string, sandbox: any = {}): any {
   const vm = new VM({
     sandbox,
   });
   try {
-    return vm.run(func);
+    return vm.run(exp);
   } catch (e) {
-    console.log('error', e);
     return null;
   }
 }
