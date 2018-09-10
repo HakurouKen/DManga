@@ -1,4 +1,4 @@
-import Manga from '../../../lib/crawlers/dm5/manga';
+import Manga from 'crawlers/dm5/manga';
 
 describe('Dm5', () => {
   describe('Manga#getInfo', () => {

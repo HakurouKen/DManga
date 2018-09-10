@@ -1,4 +1,4 @@
-import Manga from '../../../lib/crawlers/ccdm1/manga';
+import Manga from 'crawlers/ccdm1/manga';
 
 describe('Ccdm1', () => {
   describe('Manga#getInfo', () => {

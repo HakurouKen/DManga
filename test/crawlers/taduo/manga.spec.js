@@ -1,4 +1,4 @@
-import Manga from '../../../lib/crawlers/taduo/manga';
+import Manga from 'crawlers/taduo/manga';
 
 describe('Taduo', () => {
   describe('Manga#getInfo', () => {

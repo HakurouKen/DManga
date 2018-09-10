@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import rimraf from 'rimraf';
 
-import Chapter from '../../../lib/crawlers/dm5/chapter';
+import Chapter from 'crawlers/dm5/chapter';
 
 describe('Dm5', () => {
   describe('Chapter#download', function () {

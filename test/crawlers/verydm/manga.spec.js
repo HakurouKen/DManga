@@ -1,4 +1,4 @@
-import Manga from '../../../lib/crawlers/verydm/manga';
+import Manga from 'crawlers/verydm/manga';
 
 describe('Verydm', () => {
   describe('Manga#getInfo', () => {
@@ -8,7 +8,7 @@ describe('Verydm', () => {
       info = await manga.getInfo();
     });
 
-    it("contains manga's info", () => {
+    it.only("contains manga's info", () => {
       info.name.should.equal('狼与香辛料');
       info.url.should.equal('http://www.verydm.com/manhua/langyuxxl');
       info.cover.should.match(/\.jpg$/);

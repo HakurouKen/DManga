@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import rimraf from 'rimraf';
 
-import Chapter from '../../../lib/crawlers/fmhua/chapter';
+import Chapter from 'crawlers/fmhua/chapter';
 
 describe('Fmhua', () => {
   describe('Chapter#download', function () {

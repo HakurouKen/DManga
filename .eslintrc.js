@@ -1,4 +1,5 @@
 module.exports = {
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -12,6 +13,7 @@ module.exports = {
     "plugin:promise/recommended"
   ],
   "plugins": [
+    "import",
     "promise",
     "typescript"
   ],

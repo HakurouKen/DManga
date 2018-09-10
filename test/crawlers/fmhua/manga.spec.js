@@ -1,4 +1,4 @@
-import Manga from '../../../lib/crawlers/fmhua/manga';
+import Manga from 'crawlers/fmhua/manga';
 
 describe('Fmhua', () => {
   describe('Manga#getInfo', () => {

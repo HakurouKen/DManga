@@ -1,4 +1,4 @@
-import Manga from '../../../lib/crawlers/177mh/manga';
+import Manga from 'crawlers/177mh/manga';
 
 describe('177mh', () => {
   describe('Manga#getInfo', () => {

@@ -7,5 +7,12 @@ module.exports = {
     "prefer-arrow-callback": "off",
     "promise/always-return": "off",
     "promise/no-callback-in-promise": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "root": ["./lib"]
+      }
+    }
   }
 }

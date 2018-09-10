@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import rimraf from 'rimraf';
 
-import Chapter from '../../../lib/crawlers/taduo/chapter';
+import Chapter from 'crawlers/taduo/chapter';
 
 describe('Taduo', () => {
   describe('Chapter#download', function () {

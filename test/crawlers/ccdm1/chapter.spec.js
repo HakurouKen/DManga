@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import rimraf from 'rimraf';
 
-import Chapter from '../../../lib/crawlers/ccdm1/chapter';
+import Chapter from 'crawlers/ccdm1/chapter';
 
 describe('Ccdm1', () => {
   describe('Chapter#download', function () {
