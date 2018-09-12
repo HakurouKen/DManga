@@ -1,21 +1,17 @@
 import path from 'path';
 import isUrl from 'is-url';
+import rimraf from 'rimraf';
 import { isImage, isExist } from '../utils';
-import { numLeftPad } from '../../lib/utils/misc';
 
-export function shouldBeImage(filePath) {
+function shouldBeImage(filePath) {
   isImage(filePath).should.be.true();
 }
 
-export function shouldAllBeImage(filePaths = []) {
-  filePaths.forEach(filePath => shouldBeImage(filePath));
-}
-
-export function shouldNotExist(filePath) {
+function shouldNotExist(filePath) {
   isExist(filePath).should.be.false();
 }
 
-export function assertStringPartialMatched(source, tester) {
+function assertStringPartialMatched(source, tester) {
   if (typeof tester === 'string') {
     source.should.include(tester);
   } else if (tester instanceof RegExp) {
@@ -66,12 +62,53 @@ export function buildMangaGetInfoTestCases({
   });
 }
 
-export function shouldBeChapterAt({ folder = 'manga/', count = 0, suffix = '.jpg' }) {
-  const digits = Math.min(count.toFixed(0).length, 2);
-  const getFilePath = index => path.join(folder, numLeftPad(index + 1, digits) + suffix);
-  const files = Array.from(new Array(count), (val, index) => getFilePath(index));
-  files.forEach((file) => {
-    shouldBeImage(file);
+/**
+ * generate test file names
+ * @param {number} total
+ * @param {string} suffix
+ */
+function generateFileNames(total, suffix = '.jpg') {
+  const digits = Math.max(total.toFixed(0).length, 2);
+  // params `total` will never be over 10000.
+  const pad = '0000';
+  return Array.from({ length: total }).map((_, index) => (pad + (index + 1)).slice(-digits) + suffix);
+}
+
+/**
+ *
+ * @param {Object} params
+ * @param {constructor} params.Ctor Manga constructor
+ * @param {string} params.testUrl URL of manga webpage
+ * @param {string} params.dir download directory
+ * @param {string} params.forceSuffix Force set the image download suffix. Use the suffix of picture url as default.
+ * @param {Object} params.tester Test settings
+ * @param {string} params.tester.suffix Downloaded suffix
+ * @param {number} params.tester.total total count of chapter images
+ */
+export function buildChapterDownloadTestCases({
+  Ctor,
+  testUrl = '',
+  dir = 'manga/',
+  only = false,
+  forceSuffix = null,
+  tester = {},
+}) {
+  describe('Chapter#download', function () {
+    before((done) => {
+      rimraf(dir, () => {
+        done();
+      });
+    });
+
+    (only ? it.only : it)('should download the manga chapter', async () => {
+      const chapter = new Ctor(testUrl);
+      await chapter.download(path.join(dir, `{autoIndex}${forceSuffix || '{suffix}'}`));
+      const { suffix = '.jpg', total } = tester;
+      const all = generateFileNames(total + 1, suffix).map(filename => path.join(dir, filename));
+      all.slice(0, -1).forEach((filepath) => {
+        shouldBeImage(filepath);
+      });
+      shouldNotExist(all[all.length - 1]);
+    });
   });
-  shouldNotExist(getFilePath(count + 1));
 }
