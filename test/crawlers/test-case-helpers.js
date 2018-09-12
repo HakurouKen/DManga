@@ -20,6 +20,8 @@ export function assertStringPartialMatched(source, tester) {
     source.should.include(tester);
   } else if (tester instanceof RegExp) {
     source.should.match(tester);
+  } else if (typeof tester === 'number') {
+    source.length.should.gt(tester);
   } else {
     source.should.not.be.empty();
   }
