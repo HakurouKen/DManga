@@ -39,7 +39,11 @@ function main() {
     data,
   );
 
-  generate(path.join(__dirname, 'templates/test'), path.join(__dirname, '..', `test/${name}`), data);
+  generate(
+    path.join(__dirname, 'templates/test'),
+    path.join(__dirname, '..', `test/crawlers/${name}`),
+    data,
+  );
 }
 
 main();
