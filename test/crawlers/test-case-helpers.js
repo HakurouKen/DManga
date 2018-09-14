@@ -88,17 +88,22 @@ function generateFileNames(total, suffix = '.jpg') {
 export function buildChapterDownloadTestCases({
   Ctor,
   testUrl = '',
-  dir = 'manga/',
+  dir = null,
   only = false,
   forceSuffix = null,
   tester = {},
 }) {
+  if (dir == null) {
+    throw new Error('Param folder is undefined.');
+  }
   describe('Chapter#download', function () {
     before((done) => {
       rimraf(dir, () => {
         done();
       });
     });
+
+    this.timeout(120 * 1e3);
 
     (only ? it.only : it)('should download the manga chapter', async () => {
       const chapter = new Ctor(testUrl);
