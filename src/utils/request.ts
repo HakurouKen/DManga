@@ -62,7 +62,6 @@ interface downloadOptions {
   headers?: object;
   timeout?: number | { response?: number; deadline?: number };
   onProgress?: (evt: {}) => void;
-  maxRetry?: number;
 }
 
 /**
