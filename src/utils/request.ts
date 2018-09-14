@@ -62,6 +62,7 @@ interface downloadOptions {
   headers?: object;
   timeout?: number | { response?: number; deadline?: number };
   onProgress?: (evt: {}) => void;
+  maxRetry?: number;
 }
 
 /**
@@ -84,7 +85,7 @@ export async function download(
       .timeout(timeout)
       .on('progress', onProgress)
       .on('end', () => resolve())
-      .on('error', () => reject())
+      .on('error', err => reject(err))
       .pipe(fs.createWriteStream(dest));
   });
 }
@@ -99,6 +100,7 @@ function getDownloadQueue() {
 
 interface destData {
   index: number;
+  // prettier-ignore
   'name': string;
   suffix: string;
   autoIndex: string;
