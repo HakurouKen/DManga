@@ -1,6 +1,8 @@
 import { batchDownload } from '../utils/request';
 
 export default abstract class Chapter {
+  static identifer: string | RegExp | ((s: string) => boolean);
+
   url: string;
 
   constructor(url: string) {

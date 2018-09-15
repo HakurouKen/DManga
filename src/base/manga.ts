@@ -1,7 +1,9 @@
 import { fetchDocument } from '../utils/request';
 import { MangaInfo } from '../utils/types';
 
-export default abstract class DM5 {
+export default abstract class Manga {
+  static identifer: string | RegExp | ((s: string) => boolean);
+
   url: string;
 
   private $doc: Promise<CheerioStatic> | undefined;
