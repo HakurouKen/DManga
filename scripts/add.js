@@ -9,7 +9,7 @@ function generate(src, dest, data = {}) {
     const content = fsExtra.readFileSync(file.path, { encoding: 'utf8' });
     const relativePath = path.relative(src, file.path);
     const result = ejs.render(content, data);
-    const destFile = path.join(dest, relativePath);
+    const destFile = path.join(dest, relativePath).replace(/\.ejs/, '');
     fsExtra.ensureDirSync(path.dirname(destFile));
     fsExtra.writeFileSync(destFile, result);
   });
