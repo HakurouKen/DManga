@@ -3,6 +3,8 @@ import BaseManga from '../../base/manga';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
 
 export default class MangaCcdm1 extends BaseManga {
+  static identifer = /^https?:\/\/www\.ccdm1\.com\/manhua\/\d+\/?$/;
+
   async getInfo() {
     const $ = await this.$();
     const $details = $('.detail-list li').children();

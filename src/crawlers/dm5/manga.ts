@@ -37,6 +37,8 @@ function getChapters($container: Cheerio): ChapterInfo[] {
 }
 
 export default class MangaDm5 extends BaseManga {
+  static identifer = /^https?:\/\/www\.dm5\.com\/manhua-/;
+
   async getInfo() {
     const $ = await this.$();
     const $container = $('.banner_detail');

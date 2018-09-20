@@ -39,6 +39,8 @@ function getMeta(source: string, key: string): any {
 }
 
 export default class ChapterDm5 extends Chapter {
+  static identifer = /^https?:\/\/www\.dm5\.com\/m\d+/;
+
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {

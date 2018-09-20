@@ -10,7 +10,9 @@ function getChapters($el: Cheerio): ChapterInfo[] {
     .map(el => getChapterInfoFromAnchor(el, 'https://177mh.net'));
 }
 
-export default class Manga177mh extends BaseManga {
+export default class Manga177mh extends BaseManga implements Identifier {
+  static identifer = /https:\/\/www\.177mh\.net\/colist_\d+\.html/;
+
   async getInfo() {
     const $ = await this.$();
     const $infos = $('ul.ar_list_coc li');
