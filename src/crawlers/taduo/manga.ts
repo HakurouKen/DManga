@@ -4,6 +4,8 @@ import { getChapterInfoFromAnchor } from '../../utils/misc';
 const DOMAIN = 'http://www.taduo.net/';
 
 export default class MangaTaduo extends BaseManga {
+  static identifer = /^http:\/\/www\.taduo\.net\/manhua\/\d+\/$/;
+
   async getInfo() {
     const $ = await this.$();
     const $infos = $('.detailInfo ul li');

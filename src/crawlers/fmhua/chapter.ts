@@ -3,6 +3,8 @@ import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
 export default class ChapterFmhua extends Chapter {
+  static identifer = /^http:\/\/mh\.fumanhua\.net\/manhua\/\d+\/\d+\.html/;
+
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {

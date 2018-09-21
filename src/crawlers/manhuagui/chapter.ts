@@ -4,6 +4,8 @@ import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
 export default class ChapterManhuagui extends Chapter {
+  static identifer = /^https?:\/\/www\.manhuagui\.com\/comic\/\d+\/\d+.html/;
+
   private static hosts = ['i', 'us', 'eu'];
 
   private $doc: Promise<CheerioStatic> | undefined;

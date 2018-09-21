@@ -1,4 +1,5 @@
 import PQueue from 'p-queue';
+import { URL } from 'url';
 import Chapter from '../../base/chapter';
 import { fetchDocument } from '../../utils/request';
 import { choice } from '../../utils/misc';
@@ -19,6 +20,15 @@ function decode(s: string): string {
 }
 
 export default class ChapterHhimm extends Chapter {
+  static identifer(pageUrl: string) {
+    const parsedUrl = new URL(pageUrl);
+    return (
+      parsedUrl.hostname === 'www.hhimm.com'
+      && /\/cool\d+\/\d+.html/.test(parsedUrl.pathname)
+      && /\d+/.test(parsedUrl.searchParams.get('s') || '')
+    );
+  }
+
   private static sites = ['http://165.94201314.net/dm02/', 'http://124.94201314.net/dm02/'];
 
   private site: string;

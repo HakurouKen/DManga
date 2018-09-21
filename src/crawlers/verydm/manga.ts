@@ -11,6 +11,8 @@ function getChapters(el: Cheerio | CheerioElement): ChapterInfo[] {
 }
 
 export default class MangaVerydm extends BaseManga {
+  static identifer = /^http:\/\/www\.verydm\.com\/manhua\/\w+\/?$/;
+
   async getInfo() {
     const $ = await this.$();
     const $infos = $('.detail li');

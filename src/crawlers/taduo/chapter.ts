@@ -3,6 +3,8 @@ import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
 export default class ChapterTaduo extends Chapter {
+  static identifer = /^http:\/\/www\.taduo\.net\/manhua\/\d+\/\d+\.html/;
+
   private $doc: Promise<CheerioStatic> | undefined;
 
   private $() {
