@@ -23,9 +23,28 @@ function assertStringPartialMatched(source, tester) {
   }
 }
 
+function buildIdentifierTestcase(Ctor, testUrl) {
+  const { identifer } = Ctor;
+  if (typeof identifer === 'function') {
+    identifer(testUrl).should.be.true();
+  } else if (identifer instanceof RegExp) {
+    testUrl.should.match(identifer);
+  } else if (typeof identifer === 'string') {
+    testUrl.should.have.string(identifer);
+  } else {
+    throw new Error('Identifier is invalid');
+  }
+}
+
 export function buildMangaGetInfoTestCases({
   Ctor, testUrl = '', only = false, tester = {},
 }) {
+  describe('Manga.identifer', () => {
+    (only ? it.only : it)('should match the given URL', () => {
+      buildIdentifierTestcase(Ctor, testUrl);
+    });
+  });
+
   describe('Manga#getInfo', () => {
     let info;
     before(async () => {
@@ -96,6 +115,12 @@ export function buildChapterDownloadTestCases({
   if (dir == null) {
     throw new Error('Param folder is undefined.');
   }
+  describe.only('Chapter.identifier', () => {
+    (only ? it.only : it)('should match the given URL', () => {
+      buildIdentifierTestcase(Ctor, testUrl);
+    });
+  });
+
   describe('Chapter#download', function () {
     before((done) => {
       rimraf(dir, () => {
