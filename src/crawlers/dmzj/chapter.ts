@@ -4,7 +4,7 @@ import { fetchDocument } from '../../utils/request';
 import { exec } from '../../utils/misc';
 
 export default class ChapterDmzj extends Chapter {
-  static identifer = /^https?:\/\/manhua\.dmzj\.com\/[\w-]+\/\d+\.shtml/;
+  static identifier = /^https?:\/\/manhua\.dmzj\.com\/[\w-]+\/\d+\.shtml/;
 
   private $doc: Promise<CheerioStatic> | undefined;
 

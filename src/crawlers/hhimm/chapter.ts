@@ -20,7 +20,7 @@ function decode(s: string): string {
 }
 
 export default class ChapterHhimm extends Chapter {
-  static identifer(pageUrl: string) {
+  static identifier(pageUrl: string) {
     const parsedUrl = new URL(pageUrl);
     return (
       parsedUrl.hostname === 'www.hhimm.com'

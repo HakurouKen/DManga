@@ -5,7 +5,7 @@ import { getChapterInfoFromAnchor } from '../../utils/misc';
 const DOMAIN = 'https://manhua.dmzj.com';
 
 export default class MangaDmzj extends BaseManga {
-  static identifer = /^https?:\/\/manhua\.dmzj\.com\/[\w-]+\/?$/;
+  static identifier = /^https?:\/\/manhua\.dmzj\.com\/[\w-]+\/?$/;
 
   async getInfo() {
     const $ = await this.$();

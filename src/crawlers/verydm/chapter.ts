@@ -4,7 +4,7 @@ import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
 export default class ChapterVerydm extends Chapter {
-  static identifer(pageUrl: string) {
+  static identifier(pageUrl: string) {
     const parsed = new URL(pageUrl);
     return (
       parsed.hostname === 'www.verydm.com'

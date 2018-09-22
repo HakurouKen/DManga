@@ -21,7 +21,7 @@ function getChapters(
 }
 
 export default class MangaHhimm extends BaseManga {
-  static identifer = /^http:\/\/www\.hhimm\.com\/manhua\/\d+.html/;
+  static identifier = /^http:\/\/www\.hhimm\.com\/manhua\/\d+.html/;
 
   async getInfo() {
     const $ = await this.$();

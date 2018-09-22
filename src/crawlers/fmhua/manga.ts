@@ -2,7 +2,7 @@ import BaseManga from '../../base/manga';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
 
 export default class MangaFmhua extends BaseManga {
-  static identifer = /^http:\/\/mh\.fumanhua\.net\/manhua\/\d+\/$/;
+  static identifier = /^http:\/\/mh\.fumanhua\.net\/manhua\/\d+\/$/;
 
   async getInfo() {
     const $ = await this.$();

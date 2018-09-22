@@ -19,7 +19,7 @@ function getChapters(el: CheerioStatic | CheerioElement): ChapterInfo[] {
 }
 
 export default class MangaManhuagui extends BaseManga {
-  static identifer = /^https?:\/\/www\.manhuagui\.com\/comic\/\d+\/$/;
+  static identifier = /^https?:\/\/www\.manhuagui\.com\/comic\/\d+\/$/;
 
   async getInfo() {
     const $ = await this.$();

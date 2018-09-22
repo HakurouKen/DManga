@@ -4,7 +4,7 @@ import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
 export default class ChapterManhuagui extends Chapter {
-  static identifer = /^https?:\/\/www\.manhuagui\.com\/comic\/\d+\/\d+.html/;
+  static identifier = /^https?:\/\/www\.manhuagui\.com\/comic\/\d+\/\d+.html/;
 
   private static hosts = ['i', 'us', 'eu'];
 

@@ -2,7 +2,7 @@ import { fetchDocument } from '../utils/request';
 import { MangaInfo } from '../utils/types';
 
 export default abstract class Manga {
-  static identifer: string | RegExp | ((s: string) => boolean);
+  static identifier: string | RegExp | ((s: string) => boolean);
 
   url: string;
 

@@ -3,7 +3,7 @@ import { fetchDocument } from '../../utils/request';
 import { exec, findScript } from '../../utils/misc';
 
 export default class ChapterManhuatai extends Chapter {
-  static identifer = /^http:\/\/www\.manhuatai\.com\/[\w]+\/\d+.html/;
+  static identifier = /^http:\/\/www\.manhuatai\.com\/[\w]+\/\d+.html/;
 
   private $doc: Promise<CheerioStatic> | undefined;
 
