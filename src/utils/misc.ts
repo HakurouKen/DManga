@@ -99,7 +99,7 @@ export function noop() {}
 
 /**
  * Check whether the string given is matched the identifier
- * @param identifier identifer
+ * @param identifier identifier
  * @param s string to be matched
  * @returns isMatched
  */
