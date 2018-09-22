@@ -97,7 +97,7 @@ function getDownloadQueue() {
   return downloadQueue;
 }
 
-interface destData {
+export interface destData {
   index: number;
   // prettier-ignore
   'name': string;

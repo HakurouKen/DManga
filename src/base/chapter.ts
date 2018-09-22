@@ -1,4 +1,4 @@
-import { batchDownload } from '../utils/request';
+import { destData, batchDownload } from '../utils/request';
 
 export default abstract class Chapter {
   static identifier: string | RegExp | ((s: string) => boolean);
@@ -11,7 +11,7 @@ export default abstract class Chapter {
 
   abstract async getUrls(): Promise<string[]>;
 
-  async download(dest: string): Promise<{}> {
+  async download(dest: string | ((data: destData) => string)): Promise<{}> {
     const urls = await this.getUrls();
     return batchDownload(urls, dest, {
       headers: {
