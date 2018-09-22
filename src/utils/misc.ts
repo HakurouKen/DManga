@@ -96,3 +96,25 @@ export function choice<T>(arr: T[]): T {
 }
 
 export function noop() {}
+
+/**
+ * Check whether the string given is matched the identifier
+ * @param identifier identifer
+ * @param s string to be matched
+ * @returns isMatched
+ */
+export function identifierMatch(
+  s: string,
+  identifier: string | RegExp | ((ss: string) => boolean),
+): boolean {
+  if (typeof identifier === 'string') {
+    return s.indexOf(identifier) >= 0;
+  }
+  if (identifier instanceof RegExp) {
+    return identifier.test(s);
+  }
+  if (typeof identifier === 'function') {
+    return identifier(s);
+  }
+  return false;
+}
