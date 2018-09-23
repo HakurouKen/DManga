@@ -1,6 +1,7 @@
 import path from 'path';
 import glob from 'glob';
 import MangaBase from '../base/manga';
+import { MangaInfo } from '../utils/types';
 import { identifierMatch } from '../utils/misc';
 import Chapter from './chapter';
 
@@ -13,10 +14,18 @@ const Mangas: MangaConstructor[] = glob
   .map(file => require(file).default);
 /* eslint-enable global-require,import/no-dynamic-require */
 
+function shortenChapterName(chapterName: string, mangaName: string) {
+  return chapterName
+    .replace(new RegExp(`(^${mangaName}\\s?[-_])|([-_]\\s?${mangaName}$)`), '')
+    .trim();
+}
+
 export default class Manga {
   private pageUrl: string;
 
   private instance: MangaBase;
+
+  private info: Promise<MangaInfo> | undefined;
 
   constructor(pageUrl: string) {
     this.pageUrl = pageUrl;
@@ -28,7 +37,8 @@ export default class Manga {
   }
 
   getInfo() {
-    return this.instance.getInfo();
+    this.info = this.info || this.instance.getInfo();
+    return this.info;
   }
 
   private async getChapters(version?: string | number) {
@@ -48,10 +58,12 @@ export default class Manga {
   }
 
   async download(folder = './') {
+    const info = await this.getInfo();
     const chapters = await this.getChapters();
-    for (const info of chapters) {
-      const chapter = new Chapter(info.url);
-      await chapter.download(path.join(folder, info.name));
+    for (const chapterInfo of chapters) {
+      const chapter = new Chapter(chapterInfo.url);
+      const chapterName = shortenChapterName(chapterInfo.name, info.name);
+      await chapter.download(path.join(folder, info.name, chapterName));
     }
     return chapters;
   }
