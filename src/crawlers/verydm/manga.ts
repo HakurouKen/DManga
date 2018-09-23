@@ -23,7 +23,6 @@ export default class MangaVerydm extends BaseManga {
         .text()
         .trim(),
       url: this.url,
-      cover: $('.info img').attr('src'),
       authors: $infos
         .eq(0)
         .find('a')

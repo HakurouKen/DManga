@@ -19,7 +19,6 @@ export default class MangaDmzj extends BaseManga {
     return {
       url: this.url,
       name,
-      cover: $('#cover_pic').attr('src'),
       authors: $infos
         .eq(2)
         .find('a')

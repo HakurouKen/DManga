@@ -63,7 +63,6 @@ export default class MangaDm5 extends BaseManga {
     return {
       url: this.url,
       name: $name.text().trim(),
-      cover: $container.find('.cover img').attr('src'),
       end: status === '已完结',
       authors: $info
         .find('.subtitle a')

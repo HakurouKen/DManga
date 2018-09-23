@@ -10,7 +10,6 @@ export default class MangaFmhua extends BaseManga {
     return {
       name: $('#intro_l .title h1').text(),
       url: this.url,
-      cover: `http://mh.fumanhua.net${$('.info_cover img').attr('src')}`,
       authors: [$('.info p')[1].lastChild.nodeValue],
       end: false,
       description: $('#intro1')

@@ -36,7 +36,6 @@ export default class MangaHhimm extends BaseManga {
         .text()
         .trim(),
       url: this.url,
-      cover: $('#about_style img').attr('src'),
       authors: [
         $infos
           .eq(1)

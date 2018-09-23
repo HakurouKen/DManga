@@ -9,7 +9,6 @@ export interface ChapterInfo {
 export interface MangaInfo {
   url: string,
   'name': string,
-  cover: string,
   authors: string[],
   end: boolean,
   description: string,

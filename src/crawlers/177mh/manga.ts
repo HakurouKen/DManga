@@ -23,7 +23,6 @@ export default class Manga177mh extends BaseManga {
         .text()
         .trim(),
       url: this.url,
-      cover: $('.ar_list_coc dt img').attr('src'),
       authors: [
         $infos
           .eq(1)

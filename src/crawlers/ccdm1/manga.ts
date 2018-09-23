@@ -12,7 +12,6 @@ export default class MangaCcdm1 extends BaseManga {
     return {
       name: $('.book-title h1').text(),
       url: this.url,
-      cover: $('.book-cover img').attr('src'),
       authors: $details
         .eq(3)
         .find('a')

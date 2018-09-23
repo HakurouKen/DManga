@@ -7,7 +7,6 @@ describe('Manhuagui', () => {
     testUrl: 'https://www.manhuagui.com/comic/2807/',
     tester: {
       name: '史上最强弟子兼一',
-      cover: /\.jpe?g$/,
       authors: ['松江名俊'],
       end: true,
       description: 100,

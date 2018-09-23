@@ -7,7 +7,6 @@ describe('Manhuatai', () => {
     testUrl: 'http://www.manhuatai.com/baoxiaoxiaoyuan/',
     tester: {
       name: '爆笑校园',
-      cover: /\.(jpe?g|png|gif)$/,
       authors: ['漫画世界 朱斌'],
       end: false,
       chaptersShouldMoreThan: 5,

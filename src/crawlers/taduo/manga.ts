@@ -13,7 +13,6 @@ export default class MangaTaduo extends BaseManga {
     return {
       name: $('.titleInfo h1').text(),
       url: this.url,
-      cover: $('.info_cover img').attr('src'),
       authors: [
         $infos
           .eq(1)

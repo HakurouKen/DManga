@@ -1,5 +1,4 @@
 import path from 'path';
-import isUrl from 'is-url';
 import rimraf from 'rimraf';
 import { isImage, isExist } from '../utils';
 
@@ -57,9 +56,6 @@ export function buildMangaGetInfoTestCases({
       info.name.should.equal(tester.name);
       // page url
       info.url.should.equal(testUrl);
-      // manga cover image url
-      isUrl(info.cover).should.be.true();
-      assertStringPartialMatched(info.cover, tester.cover);
       // authors list, needs to be an array
       info.authors.should.deep.equal(tester.authors);
       // whether manga is ended

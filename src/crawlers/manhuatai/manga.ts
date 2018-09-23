@@ -29,7 +29,6 @@ export default class MangaManhuatai extends BaseManga {
           .text()
           .split('：')[1] || '',
       url: this.url,
-      cover: `${DOMAIN}${$('.comic-cover img').attr('src')}`,
       authors: $infos
         .eq(2)
         .text()

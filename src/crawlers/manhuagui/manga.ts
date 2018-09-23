@@ -29,7 +29,6 @@ export default class MangaManhuagui extends BaseManga {
     return {
       name: $('.book-title h1').text(),
       url: this.url,
-      cover: $('.book-cover img').attr('src'),
       authors: $details
         .eq(4)
         .find('a')

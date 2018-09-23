@@ -7,7 +7,6 @@ describe('Hhimm', () => {
     testUrl: 'http://www.hhimm.com/manhua/28308.html',
     tester: {
       name: '姐妹家的种种事',
-      cover: 'http://img.94201314.net/comicui/28308.JPG',
       end: true,
       authors: ['高野うい'],
       custom(info) {
