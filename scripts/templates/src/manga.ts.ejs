@@ -1,6 +1,8 @@
 import BaseManga from '../../base/manga';
 
 export default class Manga<%= name.capitalized %> extends BaseManga {
+  static identifier = /^https?:\/\//;
+
   async getInfo() {
     const $ = await this.$();
     // Some More Codes...
