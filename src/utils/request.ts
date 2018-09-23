@@ -144,6 +144,7 @@ export async function batchDownload(
       onTaskFinished(err, dest);
       // Stop throw errors.
       // throw err;
+      return dest;
     }
   });
   return queue.addAll(fns);
