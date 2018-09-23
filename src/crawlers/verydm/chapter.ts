@@ -8,7 +8,7 @@ export default class ChapterVerydm extends Chapter {
     const parsed = new URL(pageUrl);
     return (
       parsed.hostname === 'www.verydm.com'
-      && parsed.pathname === 'chapter.php'
+      && parsed.pathname === '/chapter.php'
       && /\d+/.test(parsed.searchParams.get('id') || '')
     );
   }
