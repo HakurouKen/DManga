@@ -1,6 +1,6 @@
 import path from 'path';
 import glob from 'glob';
-import ChapterBase from '../base/chapter';
+import ChapterBase, { chapterDownloadOptions } from '../base/chapter';
 import { identifierMatch } from '../utils/misc';
 
 type ChapterBaseType = typeof ChapterBase;
@@ -33,11 +33,11 @@ export default class Chapter {
     this.instance = new Ctor(pageUrl);
   }
 
-  download(dest = './') {
+  download(dest = './', options?: chapterDownloadOptions) {
     return this.instance.download((data) => {
       const { suffix, autoIndex } = data;
       const supportSuffix = ALLOW_SUFFIXES.indexOf(suffix) >= 0;
       return path.join(dest, `${autoIndex}${supportSuffix ? suffix : FALLBACK_SUFFIX}`);
-    });
+    }, options);
   }
 }

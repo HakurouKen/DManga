@@ -122,6 +122,12 @@
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@types/p-queue/-/p-queue-2.3.1.tgz#2fb251e46e884e31c4bd1bf58f0e188972353ff4"
 
+"@types/progress@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/progress/-/progress-2.0.1.tgz#af866001a836dbd28a6656e4b335d333bad7faf2"
+  dependencies:
+    "@types/node" "*"
+
 "@types/string-template@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/string-template/-/string-template-1.0.2.tgz#363b273c9b456705e3111e3571e9248f6474eba4"

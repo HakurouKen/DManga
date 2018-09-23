@@ -13,8 +13,9 @@ program.version(packageJson.version, '-v --version');
 program
   .command('download <url>')
   .option('-d, --dest <dest>', 'download manga from url')
+  .option('-q, --quiet', 'do not show download progress')
   .action((url, cmd) => {
-    interopRequire('./download')(url, cmd.dest);
+    interopRequire('./download')(url, { dest: cmd.dest, quiet: cmd.quiet });
   });
 
 program.command('info <url>').action((url) => {

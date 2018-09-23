@@ -61,13 +61,16 @@ export default class Manga {
     return chapterListInfo ? chapterListInfo.chapters : [];
   }
 
-  async download(folder = './') {
+  async download(folder = './', options: { withProgress?: boolean } = {}) {
     const info = await this.getInfo();
     const chapters = await this.getChapters();
     for (const chapterInfo of chapters) {
       const chapter = new Chapter(chapterInfo.url);
       const chapterName = shortenChapterName(chapterInfo.name, info.name);
-      await chapter.download(path.join(folder, info.name, chapterName));
+      await chapter.download(path.join(folder, info.name, chapterName), {
+        withProgress: options.withProgress,
+        chapterName,
+      });
     }
     return chapters;
   }
