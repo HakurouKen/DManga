@@ -20,11 +20,15 @@ export default class Chapter {
 
   private instance: ChapterBase;
 
+  static match(pageUrl: string) {
+    return Chapters.find(({ identifier }) => identifierMatch(pageUrl, identifier)) || null;
+  }
+
   constructor(pageUrl: string) {
     this.pageUrl = pageUrl;
-    const Ctor = Chapters.find(({ identifier }) => identifierMatch(pageUrl, identifier));
+    const Ctor = Chapter.match(pageUrl);
     if (!Ctor) {
-      throw new Error('Not Matched');
+      throw new Error(`URL INVALID: ${pageUrl} is not a valid chapter URL.`);
     }
     this.instance = new Ctor(pageUrl);
   }

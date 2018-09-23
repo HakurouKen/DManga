@@ -27,11 +27,15 @@ export default class Manga {
 
   private info: Promise<MangaInfo> | undefined;
 
+  static match(pageUrl: string) {
+    return Mangas.find(({ identifier }) => identifierMatch(pageUrl, identifier)) || null;
+  }
+
   constructor(pageUrl: string) {
     this.pageUrl = pageUrl;
-    const Ctor = Mangas.find(({ identifier }) => identifierMatch(pageUrl, identifier));
+    const Ctor = Manga.match(pageUrl);
     if (!Ctor) {
-      throw new Error('Not Matched');
+      throw new Error(`URL INVALID: ${pageUrl} is not a valid manga URL.`);
     }
     this.instance = new Ctor(pageUrl);
   }
