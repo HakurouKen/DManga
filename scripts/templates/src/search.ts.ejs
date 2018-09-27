@@ -8,7 +8,7 @@ export default async function search<%= name.capitalized %>(keyword: string): Pr
   
   return $items.toArray().map((el) => {
     const $el = cheerio(el);
-    const $infos = $el.find('.author a');
+    
     return {
       name: 'NAME',
       url: 'FULL_URL',
