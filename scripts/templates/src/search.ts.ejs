@@ -1,0 +1,20 @@
+import cheerio from 'cheerio';
+import { MangaSearchInfo } from '../../base/search';
+import { fetchDocument } from '../../utils/request';
+
+export default async function search<%= name.capitalized %>(keyword: string): Promise<MangaSearchInfo[]> {
+  const $ = await fetchDocument(`SEARCH_URLS?keyword=${encodeURIComponent(keyword)}`);
+  const $items = $('SELECTOR');
+  
+  return $items.toArray().map((el) => {
+    const $el = cheerio(el);
+    const $infos = $el.find('.author a');
+    return {
+      name: 'NAME',
+      url: 'FULL_URL',
+      end: false,
+      authors: [],
+      description: 'DESCRIPTION',
+    };
+  });
+}
