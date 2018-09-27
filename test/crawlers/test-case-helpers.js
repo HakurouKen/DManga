@@ -1,5 +1,6 @@
 import path from 'path';
 import rimraf from 'rimraf';
+import isUrl from 'is-url';
 import { isImage, isExist } from '../utils';
 
 function shouldBeImage(filePath) {
@@ -135,6 +136,22 @@ export function buildChapterDownloadTestCases({
         shouldBeImage(filepath);
       });
       shouldNotExist(all[all.length - 1]);
+    });
+  });
+}
+
+export function buildMangaSearcherTestCases({ search, keyword = '', only = false }) {
+  describe('search(keyword)', () => {
+    (only ? it.only : it)('should return the search result', async () => {
+      const results = await search(keyword);
+      results.should.not.empty();
+      results.forEach((result) => {
+        result.name.should.not.empty();
+        isUrl(result.url).should.be.true();
+        result.authors.should.not.empty();
+        result.authors.forEach(author => author.should.not.empty());
+        result.description.should.not.empty();
+      });
     });
   });
 }
