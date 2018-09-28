@@ -55,7 +55,14 @@ export async function fetchDocument(source: string, headers: object = {}): Promi
  */
 export async function fetchJson(source: string, headers: object = {}): Promise<any> {
   const response = await superagent(source).set(headers);
-  return response.body;
+  const { text } = response;
+  // For the compatibility of irregular Content-Type (eg: `text/html`)
+  // Manually parse the `response.text` here, instead of use `response.body`
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    return {};
+  }
 }
 
 interface downloadOptions {
