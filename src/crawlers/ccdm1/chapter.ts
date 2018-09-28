@@ -3,7 +3,7 @@ import { fetchDocument } from '../../utils/request';
 import { findScript, exec } from '../../utils/misc';
 
 export default class ChapterCcdm1 extends Chapter {
-  static identifier = /^https?:\/\/www\.ccdm1\.com\/manhua\/\d+\/\d+\.html/;
+  static identifier = /^https?:\/\/www\.ccdm1\.com\/manhua\/\d+\/\d+\.html/i;
 
   private $doc: Promise<CheerioStatic> | undefined;
 

@@ -3,7 +3,7 @@ import BaseManga from '../../base/manga';
 import { getChapterInfoFromAnchor } from '../../utils/misc';
 
 export default class MangaCcdm1 extends BaseManga {
-  static identifier = /^https?:\/\/www\.ccdm1\.com\/manhua\/\d+\/?$/;
+  static identifier = /^https?:\/\/www\.ccdm1\.com\/manhua\/\d+\/?$/i;
 
   async getInfo() {
     const $ = await this.$();

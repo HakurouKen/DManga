@@ -152,8 +152,8 @@ export function buildMangaSearcherTestCases({
         buildIdentifierTestcase(tester.url, result.url);
         if (result.authors) {
           result.authors.length.should.gt(0);
+          result.authors.forEach(author => author.should.not.empty());
         }
-        result.authors.forEach(author => author.should.not.empty());
         if (tester.description) {
           buildIdentifierTestcase(tester.description, result.description);
         }
