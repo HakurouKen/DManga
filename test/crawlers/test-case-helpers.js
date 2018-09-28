@@ -1,6 +1,5 @@
 import path from 'path';
 import rimraf from 'rimraf';
-import isUrl from 'is-url';
 import { isImage, isExist } from '../utils';
 
 function shouldBeImage(filePath) {
@@ -23,14 +22,15 @@ function assertStringPartialMatched(source, tester) {
   }
 }
 
-function buildIdentifierTestcase(Ctor, testUrl) {
-  const { identifier } = Ctor;
+function buildIdentifierTestcase(identifier, testUrl) {
   if (typeof identifier === 'function') {
     identifier(testUrl).should.be.true();
   } else if (identifier instanceof RegExp) {
     testUrl.should.match(identifier);
   } else if (typeof identifier === 'string') {
     testUrl.should.have.string(identifier);
+  } else if (identifier === true) {
+    testUrl.should.not.empty();
   } else {
     throw new Error('Identifier is invalid');
   }
@@ -41,7 +41,7 @@ export function buildMangaGetInfoTestCases({
 }) {
   describe('Manga.identifier', () => {
     (only ? it.only : it)('should match the given URL', () => {
-      buildIdentifierTestcase(Ctor, testUrl);
+      buildIdentifierTestcase(Ctor.identifier, testUrl);
     });
   });
 
@@ -114,7 +114,7 @@ export function buildChapterDownloadTestCases({
   }
   describe('Chapter.identifier', () => {
     (only ? it.only : it)('should match the given URL', () => {
-      buildIdentifierTestcase(Ctor, testUrl);
+      buildIdentifierTestcase(Ctor.identifier, testUrl);
     });
   });
 
@@ -140,17 +140,23 @@ export function buildChapterDownloadTestCases({
   });
 }
 
-export function buildMangaSearcherTestCases({ search, keyword = '', only = false }) {
+export function buildMangaSearcherTestCases({
+  search, keyword = '', only = false, tester,
+}) {
   describe('search(keyword)', () => {
     (only ? it.only : it)('should return the search result', async () => {
       const results = await search(keyword);
       results.should.not.empty();
       results.forEach((result) => {
         result.name.should.not.empty();
-        isUrl(result.url).should.be.true();
-        result.authors.should.not.empty();
+        buildIdentifierTestcase(tester.url, result.url);
+        if (result.authors) {
+          result.authors.length.should.gt(0);
+        }
         result.authors.forEach(author => author.should.not.empty());
-        result.description.should.not.empty();
+        if (tester.description) {
+          buildIdentifierTestcase(tester.description, result.description);
+        }
       });
     });
   });
