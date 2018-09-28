@@ -1,9 +1,15 @@
+import Manga from 'crawlers/177mh/manga';
 import search from 'crawlers/<%= name.normal %>/search';
 import { buildMangaSearcherTestCases } from '../test-case-helpers';
 
-describe('177mh', () => {
+describe('<%= name.normal %>', () => {
   buildMangaSearcherTestCases({
     search,
     keyword: 'SEARCH_KEYWORD',
+    tester: {
+      url: Manga.identifier,
+      authors: true,
+      description: true,
+    },
   });
 });
