@@ -1,11 +1,11 @@
-import Manga from 'crawlers/ccdm1/manga';
-import search from 'crawlers/ccdm1/search';
+import Manga from 'crawlers/hhimm/manga';
+import search from 'crawlers/hhimm/search';
 import { buildMangaSearcherTestCases } from '../test-case-helpers';
 
-describe('ccdm1', () => {
+describe('hhimm', () => {
   buildMangaSearcherTestCases({
     search,
-    keyword: '我叫坂本',
+    keyword: '命运石之门',
     tester: {
       url: Manga.identifier,
     },

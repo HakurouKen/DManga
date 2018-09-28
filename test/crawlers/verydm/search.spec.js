@@ -1,11 +1,11 @@
-import Manga from 'crawlers/ccdm1/manga';
-import search from 'crawlers/ccdm1/search';
+import Manga from 'crawlers/verydm/manga';
+import search from 'crawlers/verydm/search';
 import { buildMangaSearcherTestCases } from '../test-case-helpers';
 
-describe('ccdm1', () => {
+describe('hhimm', () => {
   buildMangaSearcherTestCases({
     search,
-    keyword: '我叫坂本',
+    keyword: '灌篮高手',
     tester: {
       url: Manga.identifier,
     },

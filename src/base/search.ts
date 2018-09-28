@@ -3,6 +3,6 @@ export interface MangaSearchInfo {
   // prettier-ignore
   'name': string;
   authors?: string[];
-  end: boolean;
+  end?: boolean;
   description?: string;
 }

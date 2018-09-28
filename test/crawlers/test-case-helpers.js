@@ -141,7 +141,7 @@ export function buildChapterDownloadTestCases({
 }
 
 export function buildMangaSearcherTestCases({
-  search, keyword = '', only = false, tester,
+  search, keyword = '', only = false, tester = {},
 }) {
   describe('search(keyword)', () => {
     (only ? it.only : it)('should return the search result', async () => {
