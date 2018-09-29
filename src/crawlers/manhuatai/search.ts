@@ -1,6 +1,5 @@
 import { MangaSearchInfo } from '../../base/search';
 import { fetchJson } from '../../utils/request';
-import { exec } from '../../utils/misc';
 
 export default async function searchManhuatai(keyword: string): Promise<MangaSearchInfo[]> {
   const response = await fetchJson(
@@ -12,7 +11,7 @@ export default async function searchManhuatai(keyword: string): Promise<MangaSea
       Host: 'www.manhuatai.com',
     },
   );
-  console.log(response);
+
   return response.map((result: any) => ({
     name: result.cartoon_name,
     url: `http://www.manhuatai.com/${result.cartoon_id}`,
