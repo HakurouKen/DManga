@@ -2,7 +2,7 @@ import cheerio from 'cheerio';
 import { MangaSearchInfo } from '../../base/search';
 import { fetchDocument } from '../../utils/request';
 
-export default async function searchVeryDm(keyword: string): Promise<MangaSearchInfo[]> {
+export default async function searchVerydm(keyword: string): Promise<MangaSearchInfo[]> {
   const $ = await fetchDocument(
     `http://www.verydm.com/index.php?r=comic%2Fsearch&keyword=${encodeURIComponent(keyword)}`,
   );
