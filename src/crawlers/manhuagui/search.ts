@@ -2,7 +2,7 @@ import cheerio from 'cheerio';
 import { MangaSearchInfo } from '../../base/search';
 import { fetchDocument } from '../../utils/request';
 
-export default async function searchHhimm(keyword: string): Promise<MangaSearchInfo[]> {
+export default async function searchManhuagui(keyword: string): Promise<MangaSearchInfo[]> {
   const $ = await fetchDocument(`https://www.manhuagui.com/s/${encodeURIComponent(keyword)}.html`);
 
   const $items = $('.book-result li');
