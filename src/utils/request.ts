@@ -6,6 +6,7 @@ import querystring from 'querystring';
 import fsExtra from 'fs-extra';
 import superagent from 'superagent';
 import superagentCharset from 'superagent-charset';
+import iconv from 'iconv-lite';
 import cheerio from 'cheerio';
 import PQueue from 'p-queue';
 import template from 'string-template';
@@ -13,12 +14,31 @@ import template from 'string-template';
 import { numLeftPad, noop } from './misc';
 
 const superagentWithCharset = superagentCharset(superagent);
+
+export function URLEncode(str: string, charset = 'utf8') {
+  if (charset === 'utf8') {
+    return encodeURIComponent(str);
+  }
+  const buf = iconv.encode(str, charset);
+  let encodeStr = '';
+  let ch = '';
+  for (let i = 0; i < buf.length; i++) {
+    ch = buf[i].toString(16);
+    if (ch.length === 1) {
+      ch = `0${ch}`;
+    }
+    encodeStr += `%${ch}`;
+  }
+  return encodeStr.toUpperCase();
+}
+
 /**
  * A basic superagent (with superagent-charset) wrapper.
  * @param requestUrl request URL
+ * @param method HTTP request methods
  */
-export function request(requestUrl: string) {
-  return superagentWithCharset(requestUrl);
+export function request(requestUrl: string, method: string = 'GET') {
+  return superagentWithCharset(method, requestUrl);
 }
 
 /**
