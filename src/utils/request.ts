@@ -15,6 +15,11 @@ import { numLeftPad, noop } from './misc';
 
 const superagentWithCharset = superagentCharset(superagent);
 
+/**
+ * URL encode with charset.
+ * @param str string to be encoded.
+ * @param charset charset, use utf8 as default(fallback to encodeURIComponent)
+ */
 export function URLEncode(str: string, charset = 'utf8') {
   if (charset === 'utf8') {
     return encodeURIComponent(str);
@@ -138,6 +143,15 @@ interface batchDownloadOptions extends downloadOptions {
   onTaskFinished?: (err: Error | null, dest: string) => void;
 }
 
+/**
+ * Batch download images.
+ * @param sources source URLs
+ * @param destTemplate file path tempalate string(or template function)
+ * @param options batchDownloadOptions
+ * @param options.onTaskStart callback on each task start
+ * @param options.onTaskEnd callback on each task end
+ * @param options... downloadOptions
+ */
 export async function batchDownload(
   sources: string[],
   destTemplate: string | ((data: destData) => string),

@@ -36,6 +36,19 @@ function buildIdentifierTestcase(identifier, testUrl) {
   }
 }
 
+/**
+ * Build Manga.identifier & Manga#getInfo test-cases.
+ * @param {Object} options
+ * @param {constructor} options.Ctor Manga Constructor
+ * @param {string} options.testUrl URL of manga webpage
+ * @param {boolean} params.only Use describe.only(). Just use for dev.
+ * @param {Object} options.tester Test settings
+ * @param {string} options.tester.name
+ * @param {string[]} options.tester.authors
+ * @param {RegExp|string|number} options.tester.description
+ * @param {number} options.tester.chapterShouldMoreThan
+ * @param {function} options.tester.custom
+ */
 export function buildMangaGetInfoTestCases({
   Ctor, testUrl = '', only = false, tester = {},
 }) {
@@ -91,11 +104,12 @@ function generateFileNames(total, suffix = '.jpg') {
 }
 
 /**
- *
+ * Build Chapter.identifier & Chapter#download test-cases.
  * @param {Object} params
- * @param {constructor} params.Ctor Manga constructor
- * @param {string} params.testUrl URL of manga webpage
+ * @param {constructor} params.Ctor Chapter constructor
+ * @param {string} params.testUrl URL of manga chapter webpage
  * @param {string} params.dir download directory
+ * @param {boolean} params.only Use describe.only(). Just use for dev.
  * @param {string} params.forceSuffix Force set the image download suffix. Use the suffix of picture url as default.
  * @param {Object} params.tester Test settings
  * @param {string} params.tester.suffix Downloaded suffix
@@ -140,6 +154,16 @@ export function buildChapterDownloadTestCases({
   });
 }
 
+/**
+ * Build search test-cases.
+ * @param {object} options options
+ * @param {function} options.search search function
+ * @param {string} options.keyword search keyword for test
+ * @param {boolean} params.only Use describe.only(). Just use for dev.
+ * @param {boolean} params.tester Test options.
+ * @param {boolean} params.tester.authors Whether check `authors` or not.
+ * @param {boolean} params.tester.description Whether check `description` or not.
+ */
 export function buildMangaSearcherTestCases({
   search, keyword = '', only = false, tester = {},
 }) {
