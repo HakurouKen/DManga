@@ -22,4 +22,11 @@ program.command('info <url>').action((url) => {
   interopRequire('./info')(url);
 });
 
+program
+  .command('search <keyword>')
+  .option('-s --sites <sites>', 'sites')
+  .action((keyword, cmd) => {
+    interopRequire('./search')(keyword, (cmd.sites || '').split(','));
+  });
+
 program.parse(process.argv);
