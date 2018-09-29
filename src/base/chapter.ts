@@ -1,5 +1,9 @@
 import Progress from 'progress';
-import { destData, batchDownload } from '../utils/request';
+import {
+  // eslint-disable-next-line no-unused-vars
+  destData,
+  batchDownload,
+} from '../utils/request';
 
 export interface chapterDownloadOptions {
   withProgress?: boolean;
