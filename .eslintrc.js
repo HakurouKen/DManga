@@ -46,7 +46,6 @@ module.exports = {
     "rules": {
       "import/no-unresolved": "off",
       "no-undef": "off",
-      "no-unused-vars": "off",
       "typescript/no-array-constructor": ["error"],
       "typescript/no-triple-slash-reference": ["error"],
       "typescript/no-unused-vars": ["error"]

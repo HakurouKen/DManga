@@ -42,7 +42,7 @@ export default class ChapterManhuatai extends Chapter {
     const end: number = info.totalimg;
     return Array.from(
       { length: end - start + 1 },
-      (v, i) => `https://${domain}/comic/${imgPath}${i + start}.jpg-noresize`,
+      (_, i) => `https://${domain}/comic/${imgPath}${i + start}.jpg-noresize`,
     );
   }
 }

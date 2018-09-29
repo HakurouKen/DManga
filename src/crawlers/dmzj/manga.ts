@@ -22,7 +22,7 @@ export default class MangaDmzj extends BaseManga {
       authors: $infos
         .eq(2)
         .find('a')
-        .map((i, elem) => {
+        .map((_, elem) => {
           const $elem = cheerio(elem);
           return $elem.text().trim();
         })

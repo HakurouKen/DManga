@@ -37,7 +37,7 @@ export default class Manga {
     if (!Ctor) {
       throw new Error(`URL INVALID: ${pageUrl} is not a valid manga URL.`);
     }
-    this.instance = new Ctor(pageUrl);
+    this.instance = new Ctor(this.pageUrl);
   }
 
   getInfo() {

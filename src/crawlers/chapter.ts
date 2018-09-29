@@ -30,7 +30,7 @@ export default class Chapter {
     if (!Ctor) {
       throw new Error(`URL INVALID: ${pageUrl} is not a valid chapter URL.`);
     }
-    this.instance = new Ctor(pageUrl);
+    this.instance = new Ctor(this.pageUrl);
   }
 
   download(dest = './', options?: chapterDownloadOptions) {
