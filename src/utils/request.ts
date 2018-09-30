@@ -9,7 +9,7 @@ import superagentCharset from 'superagent-charset';
 import iconv from 'iconv-lite';
 import cheerio from 'cheerio';
 import PQueue from 'p-queue';
-import template from 'string-template';
+import { template } from 'lodash';
 
 import { numLeftPad, noop } from './misc';
 
@@ -172,7 +172,9 @@ export async function batchDownload(
       autoIndex,
       path: pathname,
     };
-    const dest = typeof destTemplate === 'string' ? template(destTemplate, data) : destTemplate(data);
+    const dest = typeof destTemplate === 'string'
+      ? template(destTemplate, { interpolate: /{([\s\S]+?)}/g })(data)
+      : destTemplate(data);
 
     try {
       onTaskStart(dest);
