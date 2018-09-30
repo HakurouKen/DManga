@@ -97,7 +97,6 @@ export default class ChapterDm5 extends Chapter {
         }
         urls = urls.concat(nextUrls);
       } catch (e) {
-        // console.error(e);
         return urls;
       }
     }
