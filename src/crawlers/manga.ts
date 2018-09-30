@@ -45,10 +45,13 @@ export default class Manga {
     return this.info;
   }
 
-  private async getChapters(version?: string | number) {
+  private async getChapters(version: string | number | null = null) {
     const info = await this.getInfo();
-    if (!version) {
-      return info.chapters;
+    if (version == null) {
+      return {
+        name: info.name,
+        chapters: info.chapters,
+      };
     }
     const versions = info.otherVersions;
     let chapterListInfo;
@@ -57,17 +60,21 @@ export default class Manga {
     } else {
       chapterListInfo = versions[version];
     }
-
-    return chapterListInfo ? chapterListInfo.chapters : [];
+    console.log(chapterListInfo);
+    return chapterListInfo || { name: info.name, chapters: [] };
   }
 
-  async download(folder = './', options: { withProgress?: boolean } = {}) {
+  async download(
+    folder = './',
+    options: { version?: number | string; withProgress?: boolean } = {},
+  ) {
     const info = await this.getInfo();
-    const chapters = await this.getChapters();
+    const versionInfo = await this.getChapters(options.version);
+    const { chapters } = versionInfo;
     for (const chapterInfo of chapters) {
       const chapter = new Chapter(chapterInfo.url);
       const chapterName = shortenChapterName(chapterInfo.name, info.name);
-      await chapter.download(path.join(folder, info.name, chapterName), {
+      await chapter.download(path.join(folder, versionInfo.name || info.name, chapterName), {
         withProgress: options.withProgress,
         chapterName,
       });

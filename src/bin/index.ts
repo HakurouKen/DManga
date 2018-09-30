@@ -14,8 +14,15 @@ program
   .command('download <url>')
   .option('-d, --dest <dest>', 'download manga from url')
   .option('-q, --quiet', 'do not show download progress')
+  .option(
+    '-t --other-version <name>',
+    'name or index of the version, only useful when downloading manga',
+  )
   .action((url, cmd) => {
-    interopRequire('./download')(url, { dest: cmd.dest, quiet: cmd.quiet });
+    const version = /^\d+$/.test(cmd.otherVersion || '')
+      ? parseInt(cmd.otherVersion, 10)
+      : cmd.otherVersion;
+    interopRequire('./download')(url, { dest: cmd.dest, quiet: cmd.quiet, version });
   });
 
 program.command('info <url>').action((url) => {
