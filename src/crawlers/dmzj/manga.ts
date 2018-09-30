@@ -14,7 +14,7 @@ export default class MangaDmzj extends BaseManga {
       .trim();
     const $infos = $('.anim-main_list table td');
     const $versionContents = $('.photo_part+.cartoon_online_border_other');
-    const $versionTitles = $versionContents.next();
+    const $versionTitles = $versionContents.prev();
 
     return {
       url: this.url,

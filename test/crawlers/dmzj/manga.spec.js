@@ -11,7 +11,7 @@ describe('Dmzj', () => {
       chaptersShouldMoreThan: 40,
       custom(info) {
         const anotherVersion = info.otherVersions[0];
-        anotherVersion.name.should.not.empty();
+        anotherVersion.name.should.equal('一拳超人 单行本');
         anotherVersion.chapters.length.should.gt(0);
       },
     },
