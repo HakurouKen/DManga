@@ -80,4 +80,3 @@ dmanga search 灌篮高手 --sites 177mh,dmzj
 
 - [] 完善不同版本的下载
 - [] 格式化输出
-- [] i18n

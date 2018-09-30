@@ -4,6 +4,7 @@ import {
   destData,
   batchDownload,
 } from '../utils/request';
+import { t } from '../locales';
 
 export interface chapterDownloadOptions {
   withProgress?: boolean;
@@ -30,7 +31,7 @@ export default abstract class Chapter {
     let bar: Progress;
     if (options.withProgress) {
       bar = new Progress(
-        `Downloading ${options.chapterName ? `${options.chapterName}` : ''}[:bar] :percent`,
+        t('downloadProgressBar', { name: options.chapterName ? `${options.chapterName} ` : '' }),
         {
           width: 30,
           total,

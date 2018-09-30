@@ -76,9 +76,3 @@ dmanga search 一拳超人
 # Search from specific sites.
 dmanga search 灌篮高手 --sites 177mh,dmzj
 ```
-
-## TODOS
-
-- [] 完善不同版本的下载
-- [] 格式化输出
-- [] i18n
