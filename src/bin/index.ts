@@ -24,7 +24,7 @@ program.command('info <url>').action((url) => {
 
 program
   .command('search <keyword>')
-  .option('-s --sites <sites>', 'sites')
+  .option('-s, --sites <sites>', 'sites')
   .action((keyword, cmd) => {
     interopRequire('./search')(keyword, (cmd.sites || '').split(','));
   });
