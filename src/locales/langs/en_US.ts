@@ -9,6 +9,7 @@ export default {
     status: 'Status',
     statusOngoing: 'Ongoing',
     statusCompleted: 'Completed',
+    statusUnknown: 'Unknown',
     description: 'Description',
     totalChapters: 'Total Chapters',
     latestChapter: 'Latest Chapter',

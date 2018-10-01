@@ -9,6 +9,7 @@ export default {
     status: '状态',
     statusOngoing: '连载中',
     statusCompleted: '已完结',
+    statusUnknown: '未知',
     description: '简介',
     totalChapters: '章节总数',
     otherVersions: '其他版本',

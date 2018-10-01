@@ -1,6 +1,7 @@
 import { table } from 'table';
 import Manga from '../crawlers/manga';
 import { t } from '../locales';
+import { stripControlCharacters } from '../utils/misc';
 
 export default async function getInfo(url: string) {
   if (!Manga.match(url)) {
@@ -16,7 +17,7 @@ export default async function getInfo(url: string) {
         [t('info.url'), info.url],
         [t('info.author'), info.authors.join(', ')],
         [t('info.status'), info.end ? t('info.statusCompleted') : t('info.statusCompleted')],
-        [t('info.description'), info.description.replace(/\s+/, ' ')] || t('info.none'),
+        [t('info.description'), stripControlCharacters(info.description)] || t('info.none'),
         [t('info.totalChapters'), info.chapters.length],
         [
           t('info.latestChapter'),
@@ -29,7 +30,12 @@ export default async function getInfo(url: string) {
       ],
       {
         columns: {
-          1: { width: 80 },
+          0: { width: 10 },
+          // Magic Number `17`:
+          //  - first column width(10)
+          //  - outer border(1 * 2) + padding(1 * 2)
+          //  - inner border(1) + padding(left 1, right 1)
+          1: { width: (process.stdout.columns || 80) - 17 },
         },
       },
     ),

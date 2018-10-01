@@ -118,3 +118,15 @@ export function identifierMatch(
   }
   return false;
 }
+
+const WHITESPACES = /\s+/g;
+// eslint-disable-next-line no-control-regex
+const CONTROL_CHARS = /[\u0001-\u001A]/g;
+/**
+ * Strip control characters from string.
+ * @param str raw string
+ * @returns formated string
+ */
+export function stripControlCharacters(str: string): string {
+  return str.replace(WHITESPACES, ' ').replace(CONTROL_CHARS, '');
+}
