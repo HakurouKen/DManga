@@ -16,7 +16,8 @@ function getChapters(
       .eq(index)
       .find('li a')
       .toArray()
-      .map(el => getChapterInfoFromAnchor(el, 'http://www.hhimm.com/')),
+      .map(el => getChapterInfoFromAnchor(el, 'http://www.hhimm.com/'))
+      .reverse(),
   };
 }
 

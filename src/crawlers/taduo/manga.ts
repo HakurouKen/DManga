@@ -25,7 +25,8 @@ export default class MangaTaduo extends BaseManga {
         .trim(),
       chapters: $('#play_0 li a')
         .toArray()
-        .map(el => getChapterInfoFromAnchor(el, DOMAIN)),
+        .map(el => getChapterInfoFromAnchor(el, DOMAIN))
+        .reverse(),
       otherVersions: [],
     };
   }

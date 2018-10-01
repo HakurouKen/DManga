@@ -13,7 +13,8 @@ function getChapters(el: CheerioStatic | CheerioElement): ChapterInfo[] {
       return chapters.concat(
         $chapters
           .toArray()
-          .map($chapter => getChapterInfoFromAnchor($chapter, 'https://www.manhuagui.com/')),
+          .map($chapter => getChapterInfoFromAnchor($chapter, 'https://www.manhuagui.com/'))
+          .reverse(),
       );
     }, []);
 }

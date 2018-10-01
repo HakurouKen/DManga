@@ -6,7 +6,7 @@ export default class MangaFmhua extends BaseManga {
 
   async getInfo() {
     const $ = await this.$();
-    // Some More Codes...
+
     return {
       name: $('#intro_l .title h1').text(),
       url: this.url,
@@ -18,7 +18,8 @@ export default class MangaFmhua extends BaseManga {
         .replace(/收起$/, ''),
       chapters: $('#play_0 li a')
         .toArray()
-        .map(el => getChapterInfoFromAnchor(el, 'http://mh.fumanhua.net/')),
+        .map(el => getChapterInfoFromAnchor(el, 'http://mh.fumanhua.net/'))
+        .reverse(),
       otherVersions: [],
     };
   }

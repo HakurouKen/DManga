@@ -9,7 +9,8 @@ function getChapters(el: Cheerio | CheerioElement): ChapterInfo[] {
   return cheerio(el)
     .find('li a')
     .toArray()
-    .map(anchor => getChapterInfoFromAnchor(anchor, DOMAIN));
+    .map(anchor => getChapterInfoFromAnchor(anchor, DOMAIN))
+    .reverse();
 }
 
 export default class MangaManhuatai extends BaseManga {

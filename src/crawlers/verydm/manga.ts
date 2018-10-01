@@ -7,7 +7,8 @@ function getChapters(el: Cheerio | CheerioElement): ChapterInfo[] {
   return cheerio(el)
     .find('li a')
     .toArray()
-    .map(anchor => getChapterInfoFromAnchor(anchor, 'http://www.verydm.com'));
+    .map(anchor => getChapterInfoFromAnchor(anchor, 'http://www.verydm.com'))
+    .reverse();
 }
 
 export default class MangaVerydm extends BaseManga {

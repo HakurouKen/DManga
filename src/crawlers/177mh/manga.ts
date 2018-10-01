@@ -7,7 +7,8 @@ function getChapters($el: Cheerio): ChapterInfo[] {
   return $el
     .find('li a')
     .toArray()
-    .map(el => getChapterInfoFromAnchor(el, 'https://177mh.net'));
+    .map(el => getChapterInfoFromAnchor(el, 'https://177mh.net'))
+    .reverse();
 }
 
 export default class Manga177mh extends BaseManga {
