@@ -1,7 +1,5 @@
 # DManga
 
-[WIP]
-
 Search And download mangas.
 
 ## Supports
