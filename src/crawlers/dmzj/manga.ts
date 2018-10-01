@@ -34,9 +34,9 @@ export default class MangaDmzj extends BaseManga {
           .trim() === '已完结',
       description: $('.line_height_content')
         .text()
-        .trim()
         // remove ads.
-        .replace(/欢迎在动漫之家漫画网观看([\s\S]+)$/, ''),
+        .replace(/欢迎在动漫之家漫画网观看([\s\S]+)$/, '')
+        .trim(),
       chapters: $('.cartoon_online_border li a')
         .toArray()
         .map(el => getChapterInfoFromAnchor(el, DOMAIN)),
