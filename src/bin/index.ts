@@ -33,7 +33,8 @@ program
   .command('search <keyword>')
   .option('-s, --sites <sites>', 'sites')
   .action((keyword, cmd) => {
-    interopRequire('./search')(keyword, (cmd.sites || '').split(','));
+    const sites = cmd.sites ? cmd.sites.split(',') : [];
+    interopRequire('./search')(keyword, sites);
   });
 
 program.parse(process.argv);
