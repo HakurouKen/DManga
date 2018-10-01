@@ -21,7 +21,7 @@ export default class MangaCcdm1 extends BaseManga {
       description: $('#intro-all')
         .text()
         .trim(),
-      chapters: $('#chpater-list-1 li a')
+      chapters: $('.chapter-list li a')
         .toArray()
         .map(el => getChapterInfoFromAnchor(el, 'http://www.ccdm1.com/')),
       otherVersions: [],
