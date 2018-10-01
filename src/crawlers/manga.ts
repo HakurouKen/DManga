@@ -60,7 +60,6 @@ export default class Manga {
     } else {
       chapterListInfo = versions[version];
     }
-    console.log(chapterListInfo);
     return chapterListInfo || { name: info.name, chapters: [] };
   }
 
