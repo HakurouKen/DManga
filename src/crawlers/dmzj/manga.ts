@@ -32,11 +32,11 @@ export default class MangaDmzj extends BaseManga {
           .eq(4)
           .text()
           .trim() === '已完结',
-      // remove last line ad.
       description: $('.line_height_content')
         .text()
         .trim()
-        .replace(/\n(.*)?$/, ''),
+        // remove ads.
+        .replace(/欢迎在动漫之家漫画网观看([\s\S]+)$/, ''),
       chapters: $('.cartoon_online_border li a')
         .toArray()
         .map(el => getChapterInfoFromAnchor(el, DOMAIN)),
