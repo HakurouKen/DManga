@@ -14,6 +14,6 @@ export default function (
     const manga = new Manga(url);
     manga.download(dest || './', { version, withProgress: !quiet });
   } else {
-    console.error(t('errors.URL_is_invalid', { url }));
+    console.error(t('errors.invalidURL', { url }));
   }
 }
