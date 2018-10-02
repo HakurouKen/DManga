@@ -19,5 +19,23 @@ export default {
   config: {
     valueIsUndefined: '{key} 没有对应的值定义',
   },
+  cli: {
+    download: {
+      description: '从指定 URL 下载漫画',
+      dest: '下载到指定目录',
+      quiet: '不显示下载进度',
+      otherVersion: '版本的名称/序号，仅在下载整部漫画时有用',
+    },
+    info: {
+      description: '显示漫画信息',
+    },
+    search: {
+      description: '搜索漫画',
+      sites: '从指定站点搜索',
+    },
+    config: {
+      description: '读/写配置',
+    },
+  },
   downloadProgressBar: '正在下载{name}[:bar] :percent',
 };
