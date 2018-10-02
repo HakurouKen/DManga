@@ -2,7 +2,9 @@
   "name": "dmanga",
   "version": "0.1.0",
   "description": "Search and Download Manga.",
-  "main": "lib/index.js",
+  "bin": {
+    "dmanga": "lib/bin/dmanga.js"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "cli-table": "^0.3.1",

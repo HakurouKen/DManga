@@ -1,4 +1,6 @@
-import program, { Option } from 'commander';
+#!/usr/bin/env node
+
+import program from 'commander';
 import packageJson from 'pjson';
 import { getConfig } from '../utils/cli';
 import { use, t } from '../locales';
