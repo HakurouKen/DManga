@@ -11,7 +11,7 @@
 - [腐漫画 www.fmhua.com](http://www.fmhua.com)
 - [汗汗酷漫 www.hhimm.com](http://www.hhimm.com)
 - [漫画柜 www.manhuagui.com](https://www.manhuagui.com)
-- [ 漫画台 www.manhuatai.com](http://www.manhuatai.com)
+- [漫画台 www.manhuatai.com](http://www.manhuatai.com)
 - [塔多漫画 taduo.net](http://www.taduo.net)
 - [VERYDM verydm.com](http://www.verydm.com)
 
