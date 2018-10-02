@@ -12,8 +12,12 @@ export default {
     statusUnknown: 'Unknown',
     description: 'Description',
     totalChapters: 'Total Chapters',
+    otherVersions: 'Other Versions',
     latestChapter: 'Latest Chapter',
     none: '-',
+  },
+  config: {
+    valueIsUndefined: 'Value for {key} is undefined.',
   },
   downloadProgressBar: 'Downloading {name}[:bar] :percent',
 };

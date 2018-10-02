@@ -16,5 +16,8 @@ export default {
     latestChapter: '最新章节',
     none: '-',
   },
+  config: {
+    valueIsUndefined: '{key} 没有对应的值定义',
+  },
   downloadProgressBar: '正在下载{name}[:bar] :percent',
 };

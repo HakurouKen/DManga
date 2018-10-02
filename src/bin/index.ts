@@ -1,5 +1,10 @@
 import program from 'commander';
 import packageJson from 'pjson';
+import { getConfig } from '../utils/cli';
+import { use } from '../locales';
+
+const lang = getConfig('lang');
+use(lang);
 
 /* eslint-disable global-require, import/no-dynamic-require */
 function interopRequire(id: string) {
@@ -35,6 +40,14 @@ program
   .action((keyword, cmd) => {
     const sites = cmd.sites ? cmd.sites.split(',') : [];
     interopRequire('./search')(keyword, sites);
+  });
+
+program
+  .command('config [value]')
+  .option('-s --set <path> <value>')
+  .option('-g --get <path>')
+  .action((value, cmd) => {
+    interopRequire('./config')(value, { set: cmd.set, get: cmd.get });
   });
 
 program.parse(process.argv);
