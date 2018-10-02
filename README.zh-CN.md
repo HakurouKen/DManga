@@ -18,7 +18,7 @@
 ## 安装
 
 ```bash
-npm install dmanga
+npm install dmanga -g
 ```
 
 ## 使用

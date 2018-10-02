@@ -18,7 +18,7 @@ Search And download mangas.
 ## Install
 
 ```bash
-npm install dmanga
+npm install dmanga -g
 ```
 
 ## Usage
