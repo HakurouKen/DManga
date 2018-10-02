@@ -11,7 +11,7 @@ Search And download mangas.
 - [www.fmhua.com](http://www.fmhua.com)
 - [www.hhimm.com](http://www.hhimm.com)
 - [www.manhuagui.com](https://www.manhuagui.com)
-- [www.manhuatai.com](http://www.manhuatai.com)
+- [www.manhuatai.com](http://www.manhuatai.com)
 - [taduo.net](http://www.taduo.net)
 - [verydm.com](http://www.verydm.com)
 
