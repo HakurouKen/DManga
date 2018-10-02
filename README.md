@@ -74,3 +74,23 @@ dmanga search 一拳超人
 # Search from specific sites.
 dmanga search 灌篮高手 --sites 177mh,dmzj
 ```
+
+### Config
+
+`config`
+
+Params:
+
+- `-s, --set <key> <value>`: set config
+- `-g, --get <key>`: get config
+
+Example:
+
+```bash
+# show all configs
+dmanga config
+# set language
+dmanga config -s lang en_US
+# get language
+dmanga config -g lang
+```

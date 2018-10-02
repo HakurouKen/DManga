@@ -73,3 +73,23 @@ dmanga search 一拳超人
 # 在指定网站搜索
 dmanga search 灌篮高手 --sites 177mh,dmzj
 ```
+
+### 设置
+
+`config`
+
+参数:
+
+- `-s, --set <key> <value>`: 设置参数
+- `-g, --get <key>`: 获取已设置的参数
+
+示例:
+
+```bash
+# 输出所有配置
+dmanga config
+# 设置语言为 en_US
+dmanga config -s lang en_US
+# 读取当前设置的语言
+dmanga config -g lang
+```
