@@ -5,6 +5,12 @@
   "bin": {
     "dmanga": "lib/bin/dmanga.js"
   },
+  "files": [
+    "src",
+    "lib",
+    "README.md",
+    "README.zh-CN.md"
+  ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "cli-table": "^0.3.1",
